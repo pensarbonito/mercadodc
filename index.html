@@ -83,8 +83,9 @@
 
         h1 {
             max-width: 1000px;
-            font-size: clamp(48px, 4.5vw, 100px);
+            font-size: clamp(48px, 3.5vw, 100px);
             letter-spacing: -.045em;
+            margin-right: 600px;
         }
 
         h2 {
@@ -308,16 +309,15 @@
             width: min(800px, 100%);
 
             margin-left: auto;
-
-            padding:
-                clamp(60px, 10vw, 130px)
-                var(--page-padding);
+            padding:130px 300px 130px 130px;
 
             text-align: left;
         }
 
         .section-intro-content h2 {
             margin-bottom: 35px;
+            font-size: 40px;
+            line-height: 47px;
         }
 
         .section-intro-content p {
@@ -465,20 +465,14 @@ padding: 20px;
 
         .footer {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-
             align-items: center;
-
             min-height: 420px;
-
             padding:
                 80px
                 var(--page-padding);
-
             border-top: 1px solid var(--line);
-
             background: var(--black);
         }
 
@@ -502,30 +496,17 @@ padding: 20px;
         }
 
         .footer-content h2 {
-            max-width: 600px;
-
-            margin-bottom: 25px;
-
-            font-size: clamp(32px, 4vw, 55px);
+            margin-bottom: 1px;
+            font-size: 16px;
         }
 
-        .footer-content p:not(.eyebrow) {
+        .footer-content p {
             max-width: 420px;
+            margin-bottom: 1px;
 
             color: var(--grey);
         }
 
-        .copyright {
-            display: block;
-
-            margin-top: 50px;
-
-            font-size: 9px;
-            letter-spacing: .16em;
-            text-transform: uppercase;
-
-            color: rgba(255,255,255,.3);
-        }
 
 
         /* =========================================================
@@ -664,7 +645,7 @@ padding: 20px;
             }
 
             .section-intro-content {
-                padding-right: 8vw;
+                padding-right: 16vw;
             }
 
             .cards {
@@ -703,7 +684,8 @@ padding: 20px;
             <div class="hero-content">
 
                 <p class="eyebrow">
-                    11.06.2026<br>Mercado de Conocimiento y No Conocimiento Útil. Licencia #15.
+                    11.06.2026<br>Mercado de Conocimiento y No Conocimiento Útil.
+                    Licencia #15.
                 </p>
 
                 <h1>
@@ -899,21 +881,11 @@ padding: 20px;
 
         <div class="footer-content">
 
-            <p class="eyebrow">
-                Mapa Teatro – Laboratorio de Artistas
-            </p>
-
-            <h2>
-                Concepto del Mercado de Conocimiento y No-Conocimiento Útil
-            </h2>
-
             <p>
-                Hannah Hurtzig, Mobile Academy Berlin
+                Mapa Teatro – Laboratorio de Artistas<br><br>
+                Concepto del Mercado de Conocimiento y No-Conocimiento Útil<br>
+                <b>Hannah Hurtzig, Mobile Academy Berlin</b>
             </p>
-
-            <span class="copyright">
-                2026
-            </span>
 
         </div>
 
