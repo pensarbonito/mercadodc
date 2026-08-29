@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bioeconomías — Mercado de Conocimiento</title>
 
-    <!-- Tipografía -->
+    <!-- Tipografías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
     <style>
 
-        /* ==================================================
+        /* =========================================================
            VARIABLES
-        ================================================== */
+        ========================================================= */
 
         :root {
-            --bg: #f4f3ef;
-            --dark: #151515;
-            --text: #171717;
-            --white: #ffffff;
-            --muted: #777777;
+            --black: #050505;
+            --dark: #0b0b0b;
+            --dark-soft: #111111;
+            --white: #f2f1ed;
+            --grey: #9a9a96;
+            --line: rgba(255,255,255,.12);
 
-            --space-sm: 20px;
-            --space-md: 40px;
-            --space-lg: 80px;
-            --space-xl: 120px;
+            --font-display: "Averia Libre", sans-serif;
+            --font-body: "Roboto", sans-serif;
+
+            --page-padding: clamp(20px, 4vw, 60px);
         }
 
 
-        /* ==================================================
+        /* =========================================================
            RESET
-        ================================================== */
+        ========================================================= */
 
         *,
         *::before,
@@ -45,12 +48,14 @@
 
         html {
             scroll-behavior: smooth;
+            background: var(--black);
         }
 
         body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: "Roboto", sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-weight: 300;
             line-height: 1.5;
         }
 
@@ -65,96 +70,114 @@
         }
 
 
-        /* ==================================================
+        /* =========================================================
            TIPOGRAFÍA
-        ================================================== */
-
-        .eyebrow {
-            margin-bottom: var(--space-sm);
-            font-family: "Averia Libre", sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            line-height: 1.3;
-            text-transform: uppercase;
-        }
+        ========================================================= */
 
         h1,
-        h2,
         h3 {
-            font-family: "Averia Libre", sans-serif;
+            font-family: var(--font-display);
             font-weight: 400;
-            line-height: 0.95;
+            line-height: .95;
         }
 
         h1 {
-            max-width: 900px;
-            font-size: clamp(55px, 8vw, 80px);
-            letter-spacing: -0.05em;
+            max-width: 1000px;
+            font-size: clamp(48px, 4.5vw, 100px);
+            letter-spacing: -.045em;
         }
 
         h2 {
-            font-size: 30px;
-            font-family: roboto, sans-serif;
+            font-size: clamp(38px, 4vw, 68px);
+            font-family: var(--font-body);
+            line-height: 50px;
+            font-weight: 100;
         }
 
         p {
-            font-size: 14px;
-            font-family: roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
         }
 
+        .eyebrow {
+            margin-bottom: 20px;
 
-        /* ==================================================
-           BOTONES
-        ================================================== */
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 25px;
-
-            margin-top: 35px;
-            padding: 14px 20px;
-
-            border: 0px solid rgba(255, 255, 255, 0.5);
-
-            font-size: 11px;
-            letter-spacing: 0.1em;
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .16em;
+            line-height: 1.4;
             text-transform: uppercase;
 
-            transition: background 0.3s ease,
-                        color 0.3s ease;
-        }
-
-        .button:hover {
-            background: var(--white);
-            color: var(--text);
-        }
-
-        .button-dark {
-            border-color: var(--text);
-        }
-
-        .button-dark:hover {
-            background: var(--text);
-            color: var(--white);
+            color: rgba(255,255,255,.65);
         }
 
 
-        /* ==================================================
-           SECCIÓN 1 — HERO
-        ================================================== */
+
+/* =========================================================
+   BOTÓN — HALO DE LUZ SUTIL
+========================================================= */
+
+.button {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-top: 20px;
+    padding: 13px 18px;
+
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    color: var(--white);
+
+    box-shadow: 0px -10px 120px 30px #f1e30d;
+}
+
+
+/* Pequeña línea luminosa inferior */
+
+.button::after {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+    bottom: 4px;
+
+    height: 1px;
+
+}
+
+
+.button span {
+    font-size: 16px;
+    font-weight: 300;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.25);
+}
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
 
         .hero {
             position: relative;
 
             width: 100%;
-            height: 100vh;
-            min-height: 650px;
+            height: 100svh;
+            min-height: 620px;
 
             overflow: hidden;
 
-            color: var(--white);
+            background: var(--black);
         }
 
         .hero-image {
@@ -166,6 +189,32 @@
 
             object-fit: cover;
             object-position: center;
+
+            filter: brightness(.58) contrast(1.05);
+        }
+
+        /*
+           Iluminación dramática:
+           oscuro en los bordes y una zona
+           de luz suave alrededor del centro.
+        */
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    ellipse at 60% 45%,
+                    rgba(255,255,255,.10) 0%,
+                    rgba(255,255,255,.025) 28%,
+                    rgba(0,0,0,.45) 65%,
+                    rgba(0,0,0,.85) 100%
+                );
+
+            pointer-events: none;
         }
 
         .hero-overlay {
@@ -174,358 +223,405 @@
 
             background:
                 linear-gradient(
-                    180deg,
-                    rgba(0, 0, 0, 0.3),
-                    rgba(0, 0, 0, 0.05) 40%,
-                    rgba(0, 0, 0, 0.6)
+                    to bottom,
+                    rgba(0,0,0,.25) 0%,
+                    rgba(0,0,0,.05) 35%,
+                    rgba(0,0,0,.78) 100%
                 );
         }
 
         .hero-content {
             position: absolute;
 
-            right: 40px;
-            bottom: 60px;
-            left: 40px;
+            z-index: 2;
 
-            max-width: 1000px;
+            left: var(--page-padding);
+            right: var(--page-padding);
+            bottom: clamp(35px, 7vw, 80px);
         }
 
         .hero-text {
             max-width: 500px;
+            margin-top: 25px;
 
-            margin-top: 30px;
-
-            font-family: "Averia Libre", sans-serif;
+            font-family: var(--font-display);
             font-size: 17px;
+            color: rgba(255,255,255,.78);
         }
 
 
-/* ==================================================
-   SECCIÓN 2 — IMAGEN DE FONDO + TEXTO
-================================================== */
+        /* =========================================================
+           SECCIÓN 2
+           IMAGEN DE FONDO + TEXTO
+        ========================================================= */
 
-.section-intro {
-    position: relative;
+        .section-intro {
+            position: relative;
 
-    width: 100%;
-    min-height: 100vh;
+            min-height: 100svh;
 
-    overflow: hidden;
+            display: flex;
+            align-items: flex-end;
 
-    color: var(--white);
-}
+            overflow: hidden;
+
+            background: var(--black);
+        }
+
+        .section-intro-image {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center;
+
+            filter: brightness(.48) contrast(1.05);
+        }
+
+        /*
+           Luz escénica.
+        */
+
+        .section-intro::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    ellipse at 65% 35%,
+                    rgba(255,255,255,.08),
+                    transparent 40%
+                );
+
+            pointer-events: none;
+        }
+
+        .section-intro-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,.15) 0%,
+                    rgba(0,0,0,.2) 30%,
+                    rgba(0,0,0,.88) 100%
+                );
+        }
+
+        .section-intro-content {
+            position: relative;
+
+            z-index: 2;
+
+            width: min(800px, 100%);
+
+            margin-left: auto;
+
+            padding:
+                clamp(60px, 10vw, 130px)
+                var(--page-padding);
+
+            text-align: left;
+        }
+
+        .section-intro-content h2 {
+            margin-bottom: 35px;
+        }
+
+        .section-intro-content p {
+            max-width: 600px;
+
+            color: rgba(255,255,255,.75);
+        }
 
 
-/* IMAGEN DE FONDO */
-
-.section-intro-image {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-}
-
-
-/* CAPA OSCURA SOBRE LA IMAGEN */
-
-.section-intro-overlay {
-    position: absolute;
-    inset: 0;
-
-    background-image: linear-gradient(184deg, rgba(255, 0, 0, 0), black);
-}
-
-
-/* CONTENIDO */
-
-.section-intro-content {
-    position: relative;
-    z-index: 2;
-float: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    min-height: 100vh;
-
-    max-width: 850px;
-
-    padding: 100px 120px;
-}
-
-
-/* TÍTULO */
-
-.section-intro-content h2 {
-    max-width: 800px;
-
-    margin-bottom: 40px;
-
-    color: var(--white);
-}
-
-
-/* TEXTOS */
-
-.section-intro-content p {
-    max-width: 600px;
-
-    margin-bottom: 15px;
-
-    color: rgba(255, 255, 255, 0.9);
-}
-
-
-/* BOTÓN */
-
-.section-intro-content .button {
-    align-self: flex-start;
-
-cursor: pointer;
-box-shadow: 0 0 110px 50px #f1e30d;
-}
-
-
-        /* ==================================================
+        /* =========================================================
            SECCIÓN 3 — TARJETAS
-        ================================================== */
+        ========================================================= */
 
         .cards-section {
-            padding: var(--space-xl) 40px;
-              background-color: black;
+            padding:
+                clamp(80px, 10vw, 150px)
+                var(--page-padding);
+
+            background: var(--black);
         }
 
         .cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-
-            gap: 15px;
+            gap: 14px;
         }
 
         .card {
             position: relative;
 
-            min-height: 300px;
+            min-height: 400px;
 
             overflow: hidden;
 
             background-position: center;
             background-size: cover;
 
-            color: var(--white);
+            isolation: isolate;
+        }
+
+        /*
+           Oscurecimiento general.
+        */
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            z-index: -1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,.05),
+                    rgba(0,0,0,.85)
+                );
+        }
+
+        /*
+           Pequeño halo de luz.
+        */
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle at 65% 35%,
+                    rgba(255,255,255,.13),
+                    transparent 28%
+                );
         }
 
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(rgba(255, 255, 255, 0), black 61.76%);
 
+            background: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.2) 55.46%, rgba(5, 5, 5, 1) 71.85%)
         }
 
         .card-content {
             position: absolute;
-font-family: roboto, sans-serif;
+
             right: 30px;
-            bottom: 50px;
-            left: 50px;
+            bottom: 35px;
+            left: 30px;
+
+            z-index: 2;
         }
 
         .card-number {
             display: block;
 
-            margin-bottom: 10px;
-
-            font-size: 11px;
-            letter-spacing: 0.1em;
-        }
-
-        .card h3 {
             margin-bottom: 15px;
 
-            font-size: 45px;
-            letter-spacing: -0.04em;
+            font-size: 10px;
+            letter-spacing: .18em;
+
+            color: rgba(255,255,255,.5);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+
+            font-size: clamp(38px, 2vw, 58px);
         }
 
         .card p {
-            max-width: 300px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 10px;
+            max-width: 320px;
+
+            color: rgba(255,255,255,.65);
         }
 
         .card-button {
+            display: inline-flex;
+            margin-left: 25px;
+padding: 20px;
+            align-items: center;
+            justify-content: center;
 
-            box-shadow: 0 0 20px 15px #fff601;
-            display: inline-block;
-            padding: 5px;
-            font-size: 5px;
-         border-radius: 10px;
-            text-transform: uppercase;
+            width: 26px;
+            height: 26px;
+
+            margin-top: 5px;
+
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+
+            font-size: 12px;
+
+            color: var(--white);
+
+            box-shadow: 0px -8px 46px 15px #f1e30d;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            FOOTER
-        ================================================== */
+        ========================================================= */
 
-  /* ==================================================
-   FOOTER
-================================================== */
+        .footer {
+            display: grid;
 
-.footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
 
-    min-height: 500px;
+            align-items: center;
 
-    padding: 80px;
+            min-height: 420px;
 
-    background-color: black;
-}
+            padding:
+                80px
+                var(--page-padding);
+
+            border-top: 1px solid var(--line);
+
+            background: var(--black);
+        }
+
+        .footer-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-image img {
+            width: 120px;
+            height: 120px;
+
+            object-fit: contain;
+
+            opacity: .8;
+
+            filter:
+                brightness(.85)
+                drop-shadow(0 0 25px rgba(255,255,255,.08));
+        }
+
+        .footer-content h2 {
+            max-width: 600px;
+
+            margin-bottom: 25px;
+
+            font-size: clamp(32px, 4vw, 55px);
+        }
+
+        .footer-content p:not(.eyebrow) {
+            max-width: 420px;
+
+            color: var(--grey);
+        }
+
+        .copyright {
+            display: block;
+
+            margin-top: 50px;
+
+            font-size: 9px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,.3);
+        }
 
 
-/* IMAGEN / LOGO */
-
-.footer-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: auto;
-}
-
-.footer-image img {
-    width: 180px;
-    height: 180px;
-
-    object-fit: contain;
-}
-
-
-/* CONTENIDO */
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.footer-content h2 {
-    max-width: 500px;
-    margin-bottom: 20px;
-}
-
-.footer-content p:not(.eyebrow) {
-    max-width: 400px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.copyright {
-    margin-top: 10px;
-
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    color: rgba(255, 255, 255, 0.4);
-}
-
-
-        /* ==================================================
+        /* =========================================================
            TABLET
-        ================================================== */
+        ========================================================= */
 
         @media (max-width: 900px) {
-
-            .hero-content {
-                right: 25px;
-                bottom: 40px;
-                left: 25px;
-            }
-
-            .section-intro {
-                grid-template-columns: 1fr;
-            }
-
-            .section-image {
-                min-height: 60vh;
-                height: 60vh;
-            }
-
-            .section-content {
-                padding: 80px 25px;
-            }
-
-            .cards-section {
-                padding: 80px 25px;
-            }
 
             .cards {
                 grid-template-columns: 1fr;
             }
 
             .card {
-                min-height: 600px;
+                min-height: 560px;
             }
 
             .footer {
                 grid-template-columns: 1fr;
+                min-height: auto;
             }
 
             .footer-image {
-                height: 50vh;
-            }
-
-            .footer-content {
-                padding: 80px 25px;
+                justify-content: flex-start;
             }
         }
 
 
-        /* ==================================================
+        /* =========================================================
            MÓVIL
-        ================================================== */
+        ========================================================= */
 
         @media (max-width: 600px) {
 
-            .hero {
-                min-height: 600px;
-            }
-
-            .hero-content {
-                right: 20px;
-                bottom: 30px;
-                left: 20px;
+            :root {
+                --page-padding: 20px;
             }
 
             h1 {
-                font-size: clamp(48px, 14vw, 75px);
+                font-size: clamp(45px, 14vw, 72px);
             }
 
-            h2 {
-                font-size: clamp(42px, 13vw, 65px);
+            .hero {
+                min-height: 580px;
+            }
+
+            .hero-image {
+                object-position: 55% center;
             }
 
             .hero-text {
                 font-size: 15px;
             }
 
-            .section-image {
-                height: 50vh;
-                min-height: 0;
+            .section-intro {
+                min-height: 100svh;
+                align-items: flex-end;
             }
 
-            .section-content {
-                padding: 70px 20px;
+            .section-intro-image {
+                object-position: center;
+            }
+
+            .section-intro-content {
+                padding-top: 100px;
+                padding-bottom: 55px;
+            }
+
+            .section-intro-content h2 {
+                margin-bottom: 25px;
+
+                font-size: clamp(38px, 11vw, 58px);
+            }
+
+            .section-intro-content p {
+                font-size: 14px;
             }
 
             .cards-section {
-                padding: 70px 20px;
+                padding-top: 80px;
+                padding-bottom: 80px;
             }
 
             .card {
@@ -533,29 +629,71 @@ font-family: roboto, sans-serif;
             }
 
             .card-content {
-                right: 25px;
+                right: 22px;
                 bottom: 25px;
-                left: 25px;
+                left: 22px;
             }
 
-            .card h3 {
-                font-size: 40px;
+            .card h2 {
+                font-size: 42px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .footer {
+                gap: 50px;
+
+                padding-top: 70px;
+                padding-bottom: 50px;
             }
 
             .footer-image {
-                height: 45vh;
+                justify-content: flex-start;
             }
 
-            .footer-content {
-                padding: 70px 20px;
+            .footer-image img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .footer-content h2 {
+                font-size: 36px;
             }
 
             .copyright {
-                margin-top: 70px;
+                margin-top: 40px;
             }
         }
 
-        @media (max-width: 600px) { .section-intro { min-height: 100svh; } .section-intro-content { min-height: 100svh; padding: 80px 20px; } .section-intro-content h2 { margin-bottom: 30px; } .section-intro-content p { font-size: 15px; } }
+
+        /* =========================================================
+           PANTALLAS GRANDES
+        ========================================================= */
+
+        @media (min-width: 1400px) {
+
+            .hero-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .section-intro-content {
+                padding-right: 8vw;
+            }
+
+            .cards {
+                max-width: 1500px;
+                margin: 0 auto;
+            }
+
+            .footer {
+                padding-left: 8vw;
+                padding-right: 8vw;
+            }
+        }
+
     </style>
 </head>
 
@@ -564,9 +702,9 @@ font-family: roboto, sans-serif;
 
     <main>
 
-        <!-- ==================================================
+        <!-- =====================================================
              SECCIÓN 1 — HERO
-        ================================================== -->
+        ====================================================== -->
 
         <section class="hero" id="inicio">
 
@@ -581,11 +719,14 @@ font-family: roboto, sans-serif;
             <div class="hero-content">
 
                 <p class="eyebrow">
-                    Mercado de Conocimiento y No Conocimiento Útil. Licencia #15.
+                    Mercado de Conocimiento y No Conocimiento Útil.
+                    Licencia #15.
                 </p>
 
                 <h1>
-                    BIOECONOMÍAS: OTRAS FORMAS DE ECONOMÍA PARA NUESTRO TIEMPO
+                    BIOECONOMÍAS:
+                    OTRAS FORMAS DE ECONOMÍA
+                    PARA NUESTRO TIEMPO
                 </h1>
 
                 <p class="hero-text">
@@ -594,7 +735,6 @@ font-family: roboto, sans-serif;
 
                 <a href="#seccion-dos" class="button">
                     Descubrir
-                    <span>→</span>
                 </a>
 
             </div>
@@ -602,50 +742,54 @@ font-family: roboto, sans-serif;
         </section>
 
 
-<!-- ==================================================
-     SECCIÓN 2 — IMAGEN + TEXTO SUPERPUESTO
-================================================== -->
+        <!-- =====================================================
+             SECCIÓN 2 — IMAGEN + TEXTO
+        ====================================================== -->
 
-<section class="section-intro" id="seccion-dos">
+        <section class="section-intro" id="seccion-dos">
 
-    <img
-        class="section-intro-image"
-        src="Images/mercadodc.webp"
-        alt="Mercado de Conocimiento y No Conocimiento"
-    >
+            <img
+                class="section-intro-image"
+                src="Images/mercadodc.webp"
+                alt="Mercado de Conocimiento y No Conocimiento"
+            >
 
-    <div class="section-intro-overlay"></div>
+            <div class="section-intro-overlay"></div>
 
-    <div class="section-intro-content">
+            <div class="section-intro-content">
 
-        <h2>
-            ¿Qué es el Mercado de Conocimiento y No - Conocimiento?
-        </h2>
+                <h2>
+                    ¿Qué es el Mercado de Conocimiento y No-Conocimiento?
+                </h2>
 
-        <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                    sed diam nonumy eirmod tempor invidunt ut labore et
+                    dolore magna aliquyam erat, sed diam voluptua.
+                    <br><br>
+                    At vero eos et accusam et justo duo dolores et ea rebum.
+                    Stet clita kasd gubergren, no sea takimata sanctus est
+                    Lorem ipsum dolor sit amet.
+                </p>
 
-        <a href="#" class="button">
-            Conocer más
-            <span>→</span>
-        </a>
+                <a href="#" class="button">
+                    Conocer
+                </a>
 
-    </div>
+            </div>
 
-</section>
-
+        </section>
 
 
-        <!-- ==================================================
-             SECCIÓN 3 — TRES BLOQUES
-        ================================================== -->
+        <!-- =====================================================
+             SECCIÓN 3 — PROYECTOS
+        ====================================================== -->
 
         <section class="cards-section" id="seccion-tres">
 
             <div class="cards">
 
-                <!-- BLOQUE 1 -->
+                <!-- BIOECONOMÍAS -->
 
                 <article
                     class="card"
@@ -656,14 +800,22 @@ font-family: roboto, sans-serif;
 
                     <div class="card-content">
 
-                        <span class="card-number">03</span>
+                        <span class="card-number">
+                            03
+                        </span>
 
-                        <h2>Bioeconomías</h2>
+                        <h2>
+                            Bioeconomías
+                        </h2>
 
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
+                        <p>
+                            Lorem ipsum dolor sit amet,
+                            consectetuer adipiscing elit.
+                            Aenean commodo ligula eget dolor.
+                        </p>
 
                         <a href="#" class="card-button">
-                            Bioeconomías
+                        Ir
                         </a>
 
                     </div>
@@ -671,7 +823,7 @@ font-family: roboto, sans-serif;
                 </article>
 
 
-                <!-- BLOQUE 2 -->
+                <!-- ACONTRACORRIENTE -->
 
                 <article
                     class="card"
@@ -682,15 +834,22 @@ font-family: roboto, sans-serif;
 
                     <div class="card-content">
 
-                        <span class="card-number">02</span>
+                        <span class="card-number">
+                            02
+                        </span>
 
-                        <h2>Acontracorriente</h2>
+                        <h2>
+                            Acontracorriente
+                        </h2>
 
-                       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
-
+                        <p>
+                            Lorem ipsum dolor sit amet,
+                            consectetuer adipiscing elit.
+                            Aenean commodo ligula eget dolor.
+                        </p>
 
                         <a href="#" class="card-button">
-                            &#8967;
+                        
                         </a>
 
                     </div>
@@ -698,7 +857,7 @@ font-family: roboto, sans-serif;
                 </article>
 
 
-                <!-- BLOQUE 3 -->
+                <!-- MATERIA -->
 
                 <article
                     class="card"
@@ -709,14 +868,22 @@ font-family: roboto, sans-serif;
 
                     <div class="card-content">
 
-                        <span class="card-number">01</span>
+                        <span class="card-number">
+                            01
+                        </span>
 
-                        <h2>Materia</h2>
-                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
+                        <h2>
+                            Materia
+                        </h2>
 
+                        <p>
+                            Lorem ipsum dolor sit amet,
+                            consectetuer adipiscing elit.
+                            Aenean commodo ligula eget dolor.
+                        </p>
 
                         <a href="#" class="card-button">
-                           &#8967;
+                            
                         </a>
 
                     </div>
@@ -730,9 +897,9 @@ font-family: roboto, sans-serif;
     </main>
 
 
-    <!-- ==================================================
+    <!-- =========================================================
          FOOTER
-    ================================================== -->
+    ========================================================== -->
 
     <footer class="footer">
 
@@ -740,15 +907,16 @@ font-family: roboto, sans-serif;
 
             <img
                 src="Images/logom.png"
-                alt="Paisaje natural"
+                alt="Mapa Teatro"
             >
 
         </div>
 
+
         <div class="footer-content">
 
             <p class="eyebrow">
-               Mapa Teatro – Laboratorio de Artistas
+                Mapa Teatro – Laboratorio de Artistas
             </p>
 
             <h2>
