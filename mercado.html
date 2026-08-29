@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bioeconomías — Mercado de Conocimiento</title>
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+
+        /* ==================================================
+           VARIABLES
+        ================================================== */
+
+        :root {
+            --bg: #f4f3ef;
+            --dark: #151515;
+            --text: #171717;
+            --white: #ffffff;
+            --muted: #777777;
+
+            --space-sm: 20px;
+            --space-md: 40px;
+            --space-lg: 80px;
+            --space-xl: 120px;
+        }
+
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Roboto", sans-serif;
+            line-height: 1.5;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* ==================================================
+           TIPOGRAFÍA
+        ================================================== */
+
+        .eyebrow {
+            margin-bottom: var(--space-sm);
+            font-family: "Averia Libre", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Averia Libre", sans-serif;
+            font-weight: 400;
+            line-height: 0.95;
+        }
+
+        h1 {
+            max-width: 900px;
+            font-size: clamp(55px, 8vw, 80px);
+            letter-spacing: -0.05em;
+        }
+
+        h2 {
+            font-size: 30px;
+            font-family: roboto, sans-serif;
+        }
+
+        p {
+            font-size: 14px;
+            font-family: roboto, sans-serif;
+        }
+
+
+        /* ==================================================
+           BOTONES
+        ================================================== */
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 25px;
+
+            margin-top: 35px;
+            padding: 14px 20px;
+
+            border: 0px solid rgba(255, 255, 255, 0.5);
+
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+
+            transition: background 0.3s ease,
+                        color 0.3s ease;
+        }
+
+        .button:hover {
+            background: var(--white);
+            color: var(--text);
+        }
+
+        .button-dark {
+            border-color: var(--text);
+        }
+
+        .button-dark:hover {
+            background: var(--text);
+            color: var(--white);
+        }
+
+
+        /* ==================================================
+           SECCIÓN 1 — HERO
+        ================================================== */
+
+        .hero {
+            position: relative;
+
+            width: 100%;
+            height: 100vh;
+            min-height: 650px;
+
+            overflow: hidden;
+
+            color: var(--white);
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.3),
+                    rgba(0, 0, 0, 0.05) 40%,
+                    rgba(0, 0, 0, 0.6)
+                );
+        }
+
+        .hero-content {
+            position: absolute;
+
+            right: 40px;
+            bottom: 60px;
+            left: 40px;
+
+            max-width: 1000px;
+        }
+
+        .hero-text {
+            max-width: 500px;
+
+            margin-top: 30px;
+
+            font-family: "Averia Libre", sans-serif;
+            font-size: 17px;
+        }
+
+
+/* ==================================================
+   SECCIÓN 2 — IMAGEN DE FONDO + TEXTO
+================================================== */
+
+.section-intro {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    color: var(--white);
+}
+
+
+/* IMAGEN DE FONDO */
+
+.section-intro-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* CAPA OSCURA SOBRE LA IMAGEN */
+
+.section-intro-overlay {
+    position: absolute;
+    inset: 0;
+
+    background-image: linear-gradient(184deg, rgba(255, 0, 0, 0), black);
+}
+
+
+/* CONTENIDO */
+
+.section-intro-content {
+    position: relative;
+    z-index: 2;
+float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    max-width: 850px;
+
+    padding: 100px 120px;
+}
+
+
+/* TÍTULO */
+
+.section-intro-content h2 {
+    max-width: 800px;
+
+    margin-bottom: 40px;
+
+    color: var(--white);
+}
+
+
+/* TEXTOS */
+
+.section-intro-content p {
+    max-width: 600px;
+
+    margin-bottom: 15px;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* BOTÓN */
+
+.section-intro-content .button {
+    align-self: flex-start;
+
+cursor: pointer;
+box-shadow: 0 0 110px 50px #f1e30d;
+}
+
+
+        /* ==================================================
+           SECCIÓN 3 — TARJETAS
+        ================================================== */
+
+        .cards-section {
+            padding: var(--space-xl) 40px;
+              background-color: black;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .card {
+            position: relative;
+
+            min-height: 300px;
+
+            overflow: hidden;
+
+            background-position: center;
+            background-size: cover;
+
+            color: var(--white);
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(rgba(255, 255, 255, 0), black 61.76%);
+
+        }
+
+        .card-content {
+            position: absolute;
+font-family: roboto, sans-serif;
+            right: 30px;
+            bottom: 50px;
+            left: 50px;
+        }
+
+        .card-number {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 11px;
+            letter-spacing: 0.1em;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+
+            font-size: 45px;
+            letter-spacing: -0.04em;
+        }
+
+        .card p {
+            max-width: 300px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+
+        .card-button {
+
+            box-shadow: 0 0 20px 15px #fff601;
+            display: inline-block;
+            padding: 5px;
+            font-size: 5px;
+         border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+  /* ==================================================
+   FOOTER
+================================================== */
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    min-height: 500px;
+
+    padding: 80px;
+
+    background-color: black;
+}
+
+
+/* IMAGEN / LOGO */
+
+.footer-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: auto;
+}
+
+.footer-image img {
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+}
+
+
+/* CONTENIDO */
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-content h2 {
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.footer-content p:not(.eyebrow) {
+    max-width: 400px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.copyright {
+    margin-top: 10px;
+
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.4);
+}
+
+
+        /* ==================================================
+           TABLET
+        ================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero-content {
+                right: 25px;
+                bottom: 40px;
+                left: 25px;
+            }
+
+            .section-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .section-image {
+                min-height: 60vh;
+                height: 60vh;
+            }
+
+            .section-content {
+                padding: 80px 25px;
+            }
+
+            .cards-section {
+                padding: 80px 25px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: 600px;
+            }
+
+            .footer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-image {
+                height: 50vh;
+            }
+
+            .footer-content {
+                padding: 80px 25px;
+            }
+        }
+
+
+        /* ==================================================
+           MÓVIL
+        ================================================== */
+
+        @media (max-width: 600px) {
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero-content {
+                right: 20px;
+                bottom: 30px;
+                left: 20px;
+            }
+
+            h1 {
+                font-size: clamp(48px, 14vw, 75px);
+            }
+
+            h2 {
+                font-size: clamp(42px, 13vw, 65px);
+            }
+
+            .hero-text {
+                font-size: 15px;
+            }
+
+            .section-image {
+                height: 50vh;
+                min-height: 0;
+            }
+
+            .section-content {
+                padding: 70px 20px;
+            }
+
+            .cards-section {
+                padding: 70px 20px;
+            }
+
+            .card {
+                min-height: 500px;
+            }
+
+            .card-content {
+                right: 25px;
+                bottom: 25px;
+                left: 25px;
+            }
+
+            .card h3 {
+                font-size: 40px;
+            }
+
+            .footer-image {
+                height: 45vh;
+            }
+
+            .footer-content {
+                padding: 70px 20px;
+            }
+
+            .copyright {
+                margin-top: 70px;
+            }
+        }
+
+        @media (max-width: 600px) { .section-intro { min-height: 100svh; } .section-intro-content { min-height: 100svh; padding: 80px 20px; } .section-intro-content h2 { margin-bottom: 30px; } .section-intro-content p { font-size: 15px; } }
+    </style>
+</head>
+
+
+<body>
+
+    <main>
+
+        <!-- ==================================================
+             SECCIÓN 1 — HERO
+        ================================================== -->
+
+        <section class="hero" id="inicio">
+
+            <img
+                class="hero-image"
+                src="Images/bioeco.webp"
+                alt="Paisaje relacionado con bioeconomías"
+            >
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    Mercado de Conocimiento y No Conocimiento Útil. Licencia #15.
+                </p>
+
+                <h1>
+                    BIOECONOMÍAS: OTRAS FORMAS DE ECONOMÍA PARA NUESTRO TIEMPO
+                </h1>
+
+                <p class="hero-text">
+                    Mapa Teatro – Laboratorio de artistas
+                </p>
+
+                <a href="#seccion-dos" class="button">
+                    Descubrir
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+<!-- ==================================================
+     SECCIÓN 2 — IMAGEN + TEXTO SUPERPUESTO
+================================================== -->
+
+<section class="section-intro" id="seccion-dos">
+
+    <img
+        class="section-intro-image"
+        src="Images/mercadodc.webp"
+        alt="Mercado de Conocimiento y No Conocimiento"
+    >
+
+    <div class="section-intro-overlay"></div>
+
+    <div class="section-intro-content">
+
+        <h2>
+            ¿Qué es el Mercado de Conocimiento y No - Conocimiento?
+        </h2>
+
+        <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+
+        <a href="#" class="button">
+            Conocer más
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+        <!-- ==================================================
+             SECCIÓN 3 — TRES BLOQUES
+        ================================================== -->
+
+        <section class="cards-section" id="seccion-tres">
+
+            <div class="cards">
+
+                <!-- BLOQUE 1 -->
+
+                <article
+                    class="card"
+                    style="background-image: url('Images/bio1.webp');"
+                >
+
+                    <div class="card-overlay"></div>
+
+                    <div class="card-content">
+
+                        <span class="card-number">03</span>
+
+                        <h2>Bioeconomías</h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
+
+                        <a href="#" class="card-button">
+                            Bioeconomías
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BLOQUE 2 -->
+
+                <article
+                    class="card"
+                    style="background-image: url('Images/acontra.webp');"
+                >
+
+                    <div class="card-overlay"></div>
+
+                    <div class="card-content">
+
+                        <span class="card-number">02</span>
+
+                        <h2>Acontracorriente</h2>
+
+                       <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
+
+
+                        <a href="#" class="card-button">
+                            &#8967;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BLOQUE 3 -->
+
+                <article
+                    class="card"
+                    style="background-image: url('Images/faenza.webp');"
+                >
+
+                    <div class="card-overlay"></div>
+
+                    <div class="card-content">
+
+                        <span class="card-number">01</span>
+
+                        <h2>Materia</h2>
+                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet.</p>
+
+
+                        <a href="#" class="card-button">
+                           &#8967;
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-image">
+
+            <img
+                src="Images/logom.png"
+                alt="Paisaje natural"
+            >
+
+        </div>
+
+        <div class="footer-content">
+
+            <p class="eyebrow">
+               Mapa Teatro – Laboratorio de Artistas
+            </p>
+
+            <h2>
+                Concepto del Mercado de Conocimiento y No-Conocimiento Útil
+            </h2>
+
+            <p>
+                Hannah Hurtzig, Mobile Academy Berlin
+            </p>
+
+            <span class="copyright">
+                2026
+            </span>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
