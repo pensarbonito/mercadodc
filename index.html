@@ -74,18 +74,16 @@
            TIPOGRAFÍA
         ========================================================= */
 
-        h1,
-        h3 {
-            font-family: var(--font-display);
-            font-weight: 400;
-            line-height: .95;
-        }
+     
 
         h1 {
             max-width: 1000px;
             font-size: clamp(48px, 3.5vw, 100px);
             letter-spacing: -.045em;
             margin-right: 600px;
+             font-family: var(--font-display);
+             line-height: .95;
+             font-weight: 400;
         }
 
         h2 {
@@ -94,7 +92,10 @@
             line-height: 50px;
             font-weight: 100;
         }
-
+          h3 {
+            font-weight: 400;
+           margin-bottom: 30px;
+        }
         p {
             font-size: 15px;
             line-height: 1.6;
@@ -640,6 +641,7 @@ padding: 20px;
                 margin: 0 auto;
             }
 
+
             .cards {
                 max-width: 1500px;
                 margin: 0 auto;
@@ -650,6 +652,82 @@ padding: 20px;
                 padding-right: 8vw;
             }
         }
+
+ 
+   /* Botón Play */
+    .open-modal-btn {
+     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 20px;
+    padding: 13px 18px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--white);
+    box-shadow: 3.72265625px -7.984375px 100px 18px rgba(236, 224, 88, 0.88);
+      cursor: pointer;
+    }
+
+    /* Fondo difuminado */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Contenedor del modal */
+    .modal {
+      background: rgb(0, 0, 0);
+      width: 80%;
+      max-width: 900px;
+      padding: 40px;
+      border-radius: 1px;
+      position: relative;
+    max-height: 80%; /* límite de altura */
+    overflow-y: auto; /* scroll vertical */
+
+    }
+
+    /* Botón cerrar */
+    .close-modal-btn {
+position: absolute;
+top: 5px;
+right: 10px;
+background: black;
+color: rgb(255, 254, 0);
+border: none;
+padding: 4px 7px;
+cursor: pointer;
+border-radius: 15px;
+border: 2px solid;
+    }
+
+    /* Video responsivo */
+    .modal video {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    /* Texto en dos columnas */
+    .modal-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+.det-text {
+ font-size: 12px;
+}
 
     </style>
 </head>
@@ -728,15 +806,38 @@ padding: 20px;
                     Stet clita kasd gubergren, no sea takimata sanctus est
                     Lorem ipsum dolor sit amet.
                 </p>
-
-                <a href="#" class="button">
-                    Conocer
+ 
+  <a class="open-modal-btn">
+                    Descubrir
                 </a>
+
+         
 
             </div>
 
         </section>
 
+
+<!-- Botón Play -->
+ 
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-modal-btn" id="closeModal">X</button>
+      
+      <video id="videoPlayer" controls>
+        <source src="images/Hannah.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+      <h3>¿QUÉ ES EL MERCADO DE CONOCIMIENTO Y NO - CONOCIMIENTO?</h3>
+      <div class="modal-content">
+        <p class="det-text">Aliquam risus enim, pretium nec augue vel, vehicula ultrices risus. Pellentesque id imperdiet dolor, vel gravida nisi. Ut arcu est, placerat eu lacinia quis, hendrerit vitae sapien. Nam lacus erat, eleifend quis scelerisque at, varius nec ipsum. Curabitur tincidunt porttitor nisi id pellentesque. Nam sed felis massa. Morbi euismod dictum sodales. Vestibulum ornare nulla et velit lacinia, non pellentesque lacus tincidunt. Quisque aliquam erat vel rutrum vehicula. Curabitur mattis, eros a laoreet ornare, erat mauris maximus leo, eu malesuada nisi risus sed libero. Sed viverra nulla in lorem commodo consequat.</p>
+        <p class="det-text">Donec pellentesque nisi ut aliquam porta. Proin non tellus dolor. Nulla sollicitudin bibendum justo a imperdiet. Ut commodo felis velit, eu ultricies ligula auctor in. Curabitur fringilla auctor elit at hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus viverra leo felis, nec dictum mi aliquam nec. Aliquam at turpis sed est venenatis tristique ac at leo. Nulla elit tortor, auctor at elit a, fringilla congue magna. Ut fringilla ultrices felis, eu molestie purus egestas vitae. Quisque ullamcorper pulvinar turpis, in auctor nisi ullamcorper a. Cras sollicitudin dui sed tristique pretium. Nullam mattis vel arcu condimentum elementum.</p>
+      </div>
+    </div>
+  </div>
+        
 
         <!-- =====================================================
              SECCIÓN 3 — PROYECTOS
@@ -805,7 +906,7 @@ padding: 20px;
                             Aenean commodo ligula eget dolor.
                         </p>
 
-                        <a href="#" class="card-button">
+                        <a href="https://acontracorriente.co" class="card-button">
                         Ir
                         </a>
 
@@ -855,6 +956,7 @@ padding: 20px;
     </main>
 
 
+
     <!-- =========================================================
          FOOTER
     ========================================================== -->
@@ -883,6 +985,33 @@ padding: 20px;
         </div>
 
     </footer>
+
+<script>
+    const openBtn = document.querySelector('.open-modal-btn');
+    const closeBtn = document.getElementById('closeModal');
+    const overlay = document.getElementById('modalOverlay');
+    const videoPlayer = document.getElementById('videoPlayer');
+
+    // Abrir modal y reproducir video
+    openBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+      videoPlayer.play();
+    });
+
+    // Cerrar modal y pausar video
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      videoPlayer.pause();
+    });
+
+    // Cerrar al hacer clic fuera del modal
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+        videoPlayer.pause();
+      }
+    });
+  </script>
 
 </body>
 </html>
