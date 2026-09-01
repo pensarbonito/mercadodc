@@ -28,6 +28,12 @@
   padding: 0;
 }
 
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
   background: var(--black);
@@ -39,7 +45,6 @@ body {
   font-family: var(--body);
   font-weight: 300;
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 img, video {
@@ -130,7 +135,6 @@ p {
   color: var(--white);
 }
 
-/* MENÚ FLUIDO EN MÓVILES SIN OCULTAR ENLACES */
 @media (max-width: 768px) {
   .nav-inner {
     overflow-x: auto;
@@ -141,59 +145,7 @@ p {
   .nav-links { gap: 16px; }
 }
 
-/* BOTONES DE DESCARGA */
-.btn-download {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 12px;
-  padding: 12px 2px 10px;
-  border-bottom: 1px solid rgba(255,255,255,.45);
-  text-transform: uppercase;
-  letter-spacing: .16em;
-  font-size: 10px;
-  text-shadow: 0 0 8px rgba(255,255,255,.22);
-  color: var(--white);
-  transition: all 0.3s ease;
-}
-
-.btn-download:first-child { margin-top: 28px; }
-
-.btn-download:hover {
-  border-bottom-color: var(--accent-pink);
-  color: var(--accent-pink);
-  text-shadow: 0 0 12px rgba(255,42,133,.4);
-}
-
-.btn-download::after {
-  content: "↓";
-  font-size: 12px;
-}
-
-.btn--icon {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn--icon:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.intro-buttons-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* 1 — INTRO */
+/* 1 — INTRO Y REDISEÑO BALANCEADO DE LEAD CARD */
 #intro {
   padding-top: calc(60px + clamp(40px, 5vw, 80px));
   padding-bottom: clamp(40px, 5vw, 70px);
@@ -209,19 +161,67 @@ p {
 
 .intro-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: clamp(30px, 4vw, 60px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(24px, 3.5vw, 48px);
   border-top: 1px solid var(--line);
-  padding-top: 40px;
+  padding-top: 36px;
 }
 
 .intro-lead-card {
-  background: var(--panel);
-  padding: clamp(20px, 3vw, 36px);
-  border-left: 3px solid var(--accent-pink);
+  background: rgba(255, 255, 255, 0.02);
+  padding: clamp(20px, 2.5vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.intro-meta {
+  font-size: clamp(12px, 0.9vw, 13px);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: rgba(252, 252, 250, 0.65);
+  font-weight: 400;
+}
+
+.intro-buttons-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-download {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  color: var(--grey);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-download:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.btn-download::after {
+  content: "↓";
+  font-size: 11px;
+  opacity: 0.6;
+  transition: opacity 0.25s;
+}
+
+.btn-download:hover::after {
+  opacity: 1;
 }
 
 .intro-col { max-width: 68ch; }
@@ -235,7 +235,7 @@ p {
   padding-top: 16px;
 }
 
-/* 2 — GALERÍA */
+/* 2 — GALERÍA (IMÁGENES ESTÁTICAS) */
 #galeria {
   padding: clamp(50px, 6vw, 80px) 0;
   border-top: 1px solid var(--line);
@@ -297,7 +297,7 @@ p {
   margin: 4px 0 8px;
 }
 
-/* MODAL Y BOTÓN DE CIERRE FIJO A PANTALLA */
+/* MODAL Y BOTÓN DE CIERRE FIJO A LA PANTALLA */
 .modal {
   position: fixed;
   inset: 0;
@@ -319,7 +319,6 @@ p {
   border-radius: 8px;
 }
 
-/* BOTÓN DE CIERRE FIJO QUE NO DESAPARECE AL HACER SCROLL */
 .modal-close {
   position: fixed;
   top: 20px;
@@ -346,6 +345,20 @@ p {
   background: var(--accent-pink);
   color: var(--white);
   transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .modal-container {
+    width: calc(100% - 16px);
+    margin: 16px auto;
+  }
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
 }
 
 .modal-header {
@@ -413,7 +426,7 @@ details summary {
 
 details summary:hover { color: var(--accent-pink); }
 
-/* FUENTE EN TRANSCRIPCIÓN DISMINUIDA A 9PX */
+/* FUENTE EN TRANSCRIPCIÓN A 9PX */
 .transcription-content {
   margin-top: 12px;
   max-height: 220px;
@@ -492,6 +505,22 @@ details summary:hover { color: var(--accent-pink); }
   display: flex;
   gap: 12px;
   margin-top: 30px;
+}
+
+.btn--icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn--icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* 5 — FOOTER */
@@ -580,7 +609,7 @@ footer {
       <li><a href="#video">Video</a></li>
       <li><a href="#carrusel">Anfitriones</a></li>
       <li><a href="#creditos">Créditos</a></li>
-      <li><a href="https://pensarbonito.github.io/mercadodc/">Volver al inicio ↗</a></li>
+      <li><a href="https://pensarbonito.github.io/mercadodc">Volver al inicio</a></li>
     </ul>
   </div>
 </header>
@@ -667,16 +696,16 @@ footer {
       </div>
 
       <div class="carousel" id="carousel">
-        <figure class="slide"><img src="images/bioeco.webp" alt="Bioeconomías"><figcaption>Imagen 01 — Bioeconomías</figcaption></figure>
-        <figure class="slide"><img src="images/mercadodc.webp" alt="Mercado de conocimiento"><figcaption>Imagen 02 — Mercado de conocimiento</figcaption></figure>
-        <figure class="slide"><img src="images/bio1.webp" alt="Proyecto Bioeconomías"><figcaption>Imagen 03 — Proyecto</figcaption></figure>
-        <figure class="slide"><img src="images/acontra.webp" alt="Acontracorriente"><figcaption>Imagen 04 — Acontracorriente</figcaption></figure>
-        <figure class="slide"><img src="images/faenza.webp" alt="Culturas anfibias"><figcaption>Imagen 05 — Culturas anfibias</figcaption></figure>
-        <figure class="slide"><img src="images/m01.webp" alt="Mesas de intercambio"><figcaption>Imagen 06 — Diálogos territoriales</figcaption></figure>
-        <figure class="slide"><img src="images/m02.webp" alt="Soberanía alimentaria"><figcaption>Imagen 07 — Prácticas de cuidado</figcaption></figure>
-        <figure class="slide"><img src="images/m03.webp" alt="Intercambios en vivo"><figcaption>Imagen 08 — Ronda de conversaciones</figcaption></figure>
-        <figure class="slide"><img src="images/m04.webp" alt="Espacio de escucha"><figcaption>Imagen 09 — Intercambio de saberes</figcaption></figure>
-        <figure class="slide"><img src="images/m05.webp" alt="Cierre de jornada"><figcaption>Imagen 10 — Memoria colectiva</figcaption></figure>
+        <figure class="slide"><img src="images/bioeco.webp" alt="Bioeconomías" loading="lazy"><figcaption>Imagen 01 — Bioeconomías</figcaption></figure>
+        <figure class="slide"><img src="images/mercadodc.webp" alt="Mercado de conocimiento" loading="lazy"><figcaption>Imagen 02 — Mercado de conocimiento</figcaption></figure>
+        <figure class="slide"><img src="images/bio1.webp" alt="Proyecto Bioeconomías" loading="lazy"><figcaption>Imagen 03 — Proyecto</figcaption></figure>
+        <figure class="slide"><img src="images/acontra.webp" alt="Acontracorriente" loading="lazy"><figcaption>Imagen 04 — Acontracorriente</figcaption></figure>
+        <figure class="slide"><img src="images/faenza.webp" alt="Culturas anfibias" loading="lazy"><figcaption>Imagen 05 — Culturas anfibias</figcaption></figure>
+        <figure class="slide"><img src="images/m01.webp" alt="Mesas de intercambio" loading="lazy"><figcaption>Imagen 06 — Diálogos territoriales</figcaption></figure>
+        <figure class="slide"><img src="images/m02.webp" alt="Soberanía alimentaria" loading="lazy"><figcaption>Imagen 07 — Prácticas de cuidado</figcaption></figure>
+        <figure class="slide"><img src="images/m03.webp" alt="Intercambios en vivo" loading="lazy"><figcaption>Imagen 08 — Ronda de conversaciones</figcaption></figure>
+        <figure class="slide"><img src="images/m04.webp" alt="Espacio de escucha" loading="lazy"><figcaption>Imagen 09 — Intercambio de saberes</figcaption></figure>
+        <figure class="slide"><img src="images/m05.webp" alt="Cierre de jornada" loading="lazy"><figcaption>Imagen 10 — Memoria colectiva</figcaption></figure>
       </div>
 
       <div class="carousel-controls">
@@ -705,11 +734,11 @@ footer {
 <footer id="creditos">
   <div class="inner">
     <div class="footer-brands-strip">
-      <img src="images/logom.png" alt="Mapa Teatro">
-      <img src="images/logo-minigualdad.png" alt="Ministerio de Igualdad y Equidad">
-      <img src="images/logo-padf.png" alt="PADF Colombia">
-      <img src="images/logo-utadeo.png" alt="Universidad Jorge Tadeo Lozano">
-      <img src="images/logo-goethe.png" alt="Goethe-Institut">
+      <img src="images/logom.png" alt="Mapa Teatro" loading="lazy">
+      <img src="images/logo-minigualdad.png" alt="Ministerio de Igualdad y Equidad" loading="lazy">
+      <img src="images/logo-padf.png" alt="PADF Colombia" loading="lazy">
+      <img src="images/logo-utadeo.png" alt="Universidad Jorge Tadeo Lozano" loading="lazy">
+      <img src="images/logo-goethe.png" alt="Goethe-Institut" loading="lazy">
     </div>
 
     <p style="max-width: 90ch; font-size: 13px; line-height: 1.6;">
@@ -818,7 +847,7 @@ projects.forEach(([num, title, text, img], index) => {
   const card = document.createElement("article");
   card.className = "card";
   card.innerHTML = `
-    <img src="${img}" alt="${title}">
+    <img src="${img}" alt="${title}" loading="lazy">
     <div class="card-overlay">
       <span class="card-number">${num}</span>
       <h3>${title}</h3>
@@ -838,7 +867,7 @@ function openModal(index) {
   
   modalBody.innerHTML = [1, 2, 3].map((step) => `
     <div class="modal-section">
-      <img src="${hero}" alt="${title} — Momento ${step}">
+      <img src="${hero}" alt="${title} — Momento ${step}" loading="lazy">
       <div>
         <h4 style="font-size: 16px; margin-bottom: 6px;">Intervención Parte 0${step}</h4>
         <p style="font-size: 13px;">Descripción ampliada de la experiencia y los saberes compartidos en este momento de la conversación.</p>
