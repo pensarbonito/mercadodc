@@ -123,6 +123,21 @@
            BOTÓN SEGÚN DISEÑO ESPECIFICADO
         ========================================================= */
         .button {
+
+            /* Reset estricto para renderizar <button> exactamente igual que <a> */
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    font-family: inherit;
+    text-decoration: none;
+    box-sizing: border-box;
+    
+    /* Control de ancho */
+    width: fit-content; /* Fuerza al <button> a ajustarse al texto exacto igual que un <a> */
+    line-height: 1;      /* Normaliza la altura del texto en ambos elementos */
+
+
+            
             position: relative;
             border-radius: 20px;
             border: 1px solid rgba(255, 174, 0, 0.65);
