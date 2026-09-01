@@ -123,21 +123,16 @@
            BOTÓN SEGÚN DISEÑO ESPECIFICADO
         ========================================================= */
         .button {
-
-            /* Reset estricto para renderizar <button> exactamente igual que <a> */
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    font-family: inherit;
-    text-decoration: none;
-    box-sizing: border-box;
-    
-    /* Control de ancho */
-    width: fit-content; /* Fuerza al <button> a ajustarse al texto exacto igual que un <a> */
-    line-height: 1;      /* Normaliza la altura del texto en ambos elementos */
-
-
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            font-family: inherit;
+            text-decoration: none;
+            box-sizing: border-box;
             
+            width: fit-content;
+            line-height: 1;
+
             position: relative;
             border-radius: 20px;
             border: 1px solid rgba(255, 174, 0, 0.65);
@@ -156,7 +151,7 @@
             letter-spacing: .1em;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 5;
+            z-index: 10;
         }
 
         .button:hover {
@@ -258,7 +253,6 @@
             min-height: 100svh;
             display: flex;
             align-items: flex-end;
-            /* Permite que la sombra del botón respire fuera de los bordes verticales */
             overflow: visible; 
             background: var(--black);
             padding: 100px var(--page-padding) 120px var(--page-padding);
@@ -298,7 +292,6 @@
             width: min(800px, 100%);
             margin: 0 auto;
             text-align: left;
-            /* Habilitar overflow visible en el contenedor */
             overflow: visible;
         }
 
@@ -311,11 +304,12 @@
         }
 
         /* =========================================================
-           TARJETAS (SECCIÓN 3 CON FONDO NEGRO PURO)
+           TARJETAS (SECCIÓN 3 CON AJUSTES DE GLOW VISIBLE EN MÓVILES)
         ========================================================= */
         .cards-section {
             padding: 100px var(--page-padding);
             background: #000000;
+            overflow: visible;
         }
 
         .cards {
@@ -324,12 +318,13 @@
             gap: 20px;
             max-width: 1400px;
             margin: 0 auto;
+            overflow: visible;
         }
 
         .card {
             position: relative;
             min-height: 480px;
-            overflow: visible;
+            overflow: visible !important;
             background-position: center;
             background-size: cover;
             isolation: isolate;
@@ -372,7 +367,7 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            overflow: visible;
+            overflow: visible !important;
         }
 
         .card-number {
@@ -420,7 +415,6 @@
             border: 0px solid var(--line);
         }
 
-        /* BOTÓN CERRAR FUERA DEL MODAL */
         .close-modal-btn {
             position: fixed;
             top: 25px;
@@ -500,9 +494,18 @@
            AJUSTES RESPONSIVOS
         ========================================================= */
         @media (max-width: 768px) {
+            .cards-section {
+                padding: 60px 25px 100px 25px;
+            }
+
+            .cards {
+                gap: 70px; /* Separación adaptada para evitar solapamientos de sombra en columna vertical */
+            }
+
             .modal-content {
                 grid-template-columns: 1fr;
             }
+
             .close-modal-btn {
                 top: 15px;
                 right: 15px;
