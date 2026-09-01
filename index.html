@@ -10,37 +10,27 @@
     <!-- Tipografías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-
         /* =========================================================
-           VARIABLES
+           VARIABLES Y CONFIGURACIÓN GENERAL
         ========================================================= */
-
         :root {
             --black: #050505;
             --dark: #0b0b0b;
             --dark-soft: #111111;
             --white: #f2f1ed;
             --grey: #9a9a96;
-            --line: rgba(255,255,255,.12);
+            --line: rgba(255, 255, 255, .12);
 
             --font-display: "Averia Libre", sans-serif;
             --font-body: "Roboto", sans-serif;
 
-            --page-padding: clamp(20px, 4vw, 60px);
+            --page-padding: clamp(20px, 5vw, 80px);
         }
 
-
-        /* =========================================================
-           RESET
-        ========================================================= */
-
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -56,7 +46,8 @@
             color: var(--white);
             font-family: var(--font-body);
             font-weight: 300;
-            line-height: 1.5;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         img {
@@ -69,951 +60,591 @@
             text-decoration: none;
         }
 
+        /* =========================================================
+           TRANSICIÓN SUTIL ENTRE SECCIONES (FADE ON SCROLL)
+        ========================================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* =========================================================
-           TIPOGRAFÍA
+           TIPOGRAFÍA UNIFICADA
         ========================================================= */
-
-     
-
         h1 {
-            max-width: 1000px;
-            font-size: clamp(48px, 3.5vw, 100px);
-            letter-spacing: -.045em;
-            margin-right: 600px;
-             font-family: var(--font-display);
-             line-height: .95;
-             font-weight: 400;
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -.03em;
+            max-width: 900px;
+            margin-bottom: 20px;
         }
 
         h2 {
-            font-size: clamp(38px, 4vw, 68px);
             font-family: var(--font-body);
-            line-height: 50px;
-            font-weight: 100;
+            font-size: clamp(24px, 3.5vw, 42px);
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -.01em;
         }
-          h3 {
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.5vw, 24px);
             font-weight: 400;
-           margin-bottom: 30px;
+            margin-bottom: 20px;
         }
+
         p {
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: clamp(14px, 1.2vw, 16px);
+            color: rgba(255, 255, 255, .75);
+            line-height: 1.7;
         }
 
         .eyebrow {
             margin-bottom: 20px;
-
             font-family: var(--font-body);
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 500;
             letter-spacing: .16em;
-            line-height: 1.4;
             text-transform: uppercase;
-
-            color: rgba(255,255,255,.65);
+            color: rgba(255, 255, 255, .65);
         }
 
+        /* =========================================================
+           BOTÓN SEGÚN DISEÑO ESPECIFICADO
+        ========================================================= */
+        .button {
+            position: relative;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 174, 0, 0.65);
+            color: coral;
+            background-color: beige;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            padding: 9px 13px;
+            font-size: 10px;
+            font-weight: 600;
+            box-shadow: 3.72265625px -7.984375px 94px 46px rgba(246, 196, 48, 0.81);
+            font-family: var(--font-body);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 5;
+        }
 
+        .button:hover {
+            transform: translateY(-2px);
+        }
 
-/* =========================================================
-   BOTÓN — HALO DE LUZ SUTIL
-========================================================= */
+        /* =========================================================
+           INDICADOR DE SCROLL MINIMALISTA (LÍNEA)
+        ========================================================= */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
 
-.button {
-    position: relative;
-border-radius: 20px;
-    border: 1px solid rgba(255, 174, 0, 0.65);
-    color: coral;
-    background-color: beige;
-    display: inline-flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 20px;
-    padding: 9px 13px;
-    font-size: 10px;
-    font-weight: 600;
-    box-shadow: 3.72265625px -7.984375px 94px 46px rgba(246, 196, 48, 0.81);
-}
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
 
+        .scroll-line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+            animation: linePulse 2s infinite ease-in-out;
+        }
 
-/* Pequeña línea luminosa inferior */
-
-.button::after {
-    content: "";
-
-    position: absolute;
-
-    left: 18px;
-    right: 18px;
-    bottom: 4px;
-
-    height: 1px;
-
-}
-
-
-.button span {
-    font-size: 16px;
-    font-weight: 300;
-
-    text-shadow:
-        0 0 8px rgba(255,255,255,.25);
-}
-
+        @keyframes linePulse {
+            0% { transform: scaleY(0.4); transform-origin: top; opacity: 0.3; }
+            50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            100% { transform: scaleY(0.4); transform-origin: bottom; opacity: 0.3; }
+        }
 
         /* =========================================================
            HERO
         ========================================================= */
-
         .hero {
             position: relative;
-
             width: 100%;
             height: 100svh;
-            min-height: 620px;
-
+            min-height: 600px;
+            display: flex;
+            align-items: center;
             overflow: hidden;
-
             background: var(--black);
+            padding: 0 var(--page-padding);
         }
 
         .hero-image {
             position: absolute;
             inset: 0;
-
             width: 100%;
             height: 100%;
-
             object-fit: cover;
             object-position: center;
-
             filter: brightness(.58) contrast(1.05);
         }
 
-        /*
-           Iluminación dramática:
-           oscuro en los bordes y una zona
-           de luz suave alrededor del centro.
-        */
-
         .hero::after {
             content: "";
-
             position: absolute;
             inset: 0;
-
-            background:
-                radial-gradient(
-                    ellipse at 60% 45%,
-                    rgba(255,255,255,.10) 0%,
-                    rgba(255,255,255,.025) 28%,
-                    rgba(0,0,0,.45) 65%,
-                    rgba(0,0,0,.85) 100%
-                );
-
+            background: radial-gradient(
+                ellipse at 60% 45%,
+                rgba(255,255,255,.10) 0%,
+                rgba(255,255,255,.025) 28%,
+                rgba(0,0,0,.45) 65%,
+                rgba(0,0,0,.85) 100%
+            );
             pointer-events: none;
         }
 
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-        }
-
         .hero-content {
-            position: absolute;
-
+            position: relative;
             z-index: 2;
-
-            left: var(--page-padding);
-            right: var(--page-padding);
-            bottom: 250px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .hero-text {
             max-width: 500px;
-            margin-top: 25px;
-
+            margin: 15px 0 25px 0;
             font-family: var(--font-display);
-            font-size: 17px;
+            font-size: clamp(15px, 1.3vw, 18px);
             color: rgba(255,255,255,.78);
         }
 
-
         /* =========================================================
-           SECCIÓN 2
-           IMAGEN DE FONDO + TEXTO
+           SECCIÓN INTRO (AJUSTADA PARA NO CORTAR LA SOMBRA/BLUR)
         ========================================================= */
-
         .section-intro {
             position: relative;
-
             min-height: 100svh;
-
             display: flex;
             align-items: flex-end;
-
-            overflow: hidden;
-
+            /* Permite que la sombra del botón respire fuera de los bordes verticales */
+            overflow: visible; 
             background: var(--black);
+            padding: 100px var(--page-padding) 120px var(--page-padding);
         }
 
         .section-intro-image {
             position: absolute;
             inset: 0;
-
             width: 100%;
             height: 100%;
-
             object-fit: cover;
             object-position: center;
-
             filter: brightness(.48) contrast(1.05);
         }
 
-        /*
-           Luz escénica.
-        */
-
         .section-intro::after {
             content: "";
-
             position: absolute;
             inset: 0;
-
-            background:
-                radial-gradient(
-                    ellipse at 65% 35%,
-                    rgba(255,255,255,.08),
-                    transparent 40%
-                );
-
+            background: radial-gradient(
+                ellipse at 65% 35%,
+                rgba(255,255,255,.08),
+                transparent 40%
+            );
             pointer-events: none;
         }
 
         .section-intro-overlay {
             position: absolute;
             inset: 0;
-
             background: radial-gradient(rgba(255, 255, 0, 0) 8.4%, #000000 69.75%);
         }
 
         .section-intro-content {
             position: relative;
-
             z-index: 2;
-
             width: min(800px, 100%);
-
-            margin-left: auto;
-            padding:130px 300px 130px 130px;
-
+            margin: 0 auto;
             text-align: left;
+            /* Habilitar overflow visible en el contenedor */
+            overflow: visible;
         }
 
         .section-intro-content h2 {
-            margin-bottom: 35px;
-            font-size: 40px;
-            line-height: 47px;
+            margin-bottom: 25px;
         }
 
         .section-intro-content p {
-            max-width: 600px;
-
-            color: rgba(255,255,255,.75);
+            margin-bottom: 30px;
         }
 
-
         /* =========================================================
-           SECCIÓN 3 — TARJETAS
+           TARJETAS (SECCIÓN 3 CON FONDO NEGRO PURO)
         ========================================================= */
-
         .cards-section {
-            padding-bottom: 70px;
+            padding: 100px var(--page-padding);
             background: #000000;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .card {
             position: relative;
-
-            min-height: 400px;
-
-            overflow: hidden;
-
+            min-height: 480px;
+            overflow: visible;
             background-position: center;
             background-size: cover;
-
             isolation: isolate;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
         }
-
-        /*
-           Oscurecimiento general.
-        */
 
         .card::before {
             content: "";
-
             position: absolute;
             inset: 0;
-
             z-index: -1;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,.05),
-                    rgba(0,0,0,.85)
-                );
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,.05),
+                rgba(0,0,0,.85)
+            );
         }
-
-        /*
-           Pequeño halo de luz.
-        */
 
         .card::after {
             content: "";
-
             position: absolute;
             inset: 0;
-
             z-index: -1;
-
-            background:
-                radial-gradient(
-                    circle at 65% 35%,
-                    rgba(255,255,255,.13),
-                    transparent 28%
-                );
+            background: radial-gradient(
+                circle at 65% 35%,
+                rgba(255,255,255,.13),
+                transparent 28%
+            );
         }
 
         .card-overlay {
             position: absolute;
             inset: 0;
-
             background: radial-gradient(rgba(255, 255, 0, 0) 8.4%, #000000 69.75%);
         }
 
         .card-content {
-            position: absolute;
-
-            right: 30px;
-            bottom: 35px;
-            left: 30px;
-
+            position: relative;
             z-index: 2;
+            width: 100%;
+            overflow: visible;
         }
 
         .card-number {
             display: block;
-
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: .18em;
-
             color: rgba(255,255,255,.5);
+            margin-bottom: 5px;
         }
 
         .card h2 {
+            font-size: clamp(22px, 2vw, 28px);
             margin-bottom: 10px;
-
-            font-size: 25px;
         }
 
         .card p {
-            max-width: 320px;
-
-            color: rgba(255,255,255,.65);
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        .card-button {
-            display: inline-flex;
-            margin-left: 25px;
-padding: 20px;
-            align-items: center;
+        /* =========================================================
+           MODAL RESPONSIVO CON BOTÓN DE CERRAR EXTERNO
+        ========================================================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            display: none;
             justify-content: center;
-
-            width: 26px;
-            height: 26px;
-
-            margin-top: 5px;
-
-       
-            border-radius: 50%;
-
-            font-size: 12px;
-
-            color: var(--white);
-
-            box-shadow: 0 -8px 45px 10px rgba(245, 231, 83, 0.68);
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
         }
 
+        .modal {
+            background: var(--dark);
+            width: 100%;
+            max-width: 850px;
+            padding: clamp(25px, 4vw, 45px);
+            position: relative;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--line);
+        }
+
+        /* BOTÓN CERRAR FUERA DEL MODAL */
+        .close-modal-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1010;
+            margin-top: 0;
+        }
+
+        .modal video {
+            width: 100%;
+            height: auto;
+            margin: 15px 0 20px 0;
+            border: 1px solid var(--line);
+            flex-shrink: 0;
+        }
+
+        .modal-body-scroll {
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .modal-body-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .modal-body-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+        }
+
+        .modal-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .det-text {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
+        }
 
         /* =========================================================
            FOOTER
         ========================================================= */
-
         .footer {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             align-items: center;
-            padding:
-                80px
-                var(--page-padding);
+            padding: 80px var(--page-padding);
             border-top: 1px solid var(--line);
             background: var(--black);
-        }
-
-        .footer-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .footer-image img {
-            width: 120px;
-            height: 120px;
-
+            width: 100px;
+            height: 100px;
             object-fit: contain;
-
             opacity: .8;
-
-            filter:
-                brightness(.85)
-                drop-shadow(0 0 25px rgba(255,255,255,.08));
-        }
-
-        .footer-content h2 {
-            margin-bottom: 1px;
-            font-size: 16px;
+            filter: brightness(.85) drop-shadow(0 0 25px rgba(255,255,255,.08));
         }
 
         .footer-content p {
-            max-width: 420px;
-            margin-bottom: 1px;
-
+            font-size: 13px;
             color: var(--grey);
         }
 
-
+        .footer-content a {
+            text-decoration: underline;
+        }
 
         /* =========================================================
-           TABLET
+           AJUSTES RESPONSIVOS
         ========================================================= */
-
-        @media (max-width: 900px) {
-
-            .cards {
+        @media (max-width: 768px) {
+            .modal-content {
                 grid-template-columns: 1fr;
             }
-
-            .card {
-                min-height: 560px;
-            }
-
-            .footer {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .footer-image {
-                justify-content: flex-start;
+            .close-modal-btn {
+                top: 15px;
+                right: 15px;
             }
         }
-
-
-        /* =========================================================
-           MÓVIL
-        ========================================================= */
-
-        @media (max-width: 600px) {
-
-            :root {
-                --page-padding: 20px;
-            }
-
-            h1 {
-                font-size: clamp(45px, 14vw, 72px);
-            }
-
-            .hero {
-                min-height: 580px;
-            }
-
-            .hero-image {
-                object-position: 55% center;
-            }
-
-            .hero-text {
-                font-size: 15px;
-            }
-
-            .section-intro {
-                min-height: 100svh;
-                align-items: flex-end;
-            }
-
-            .section-intro-image {
-                object-position: center;
-            }
-
-            .section-intro-content {
-                padding-top: 100px;
-                padding-bottom: 55px;
-            }
-
-            .section-intro-content h2 {
-                margin-bottom: 25px;
-
-                font-size: clamp(38px, 11vw, 58px);
-            }
-
-            .section-intro-content p {
-                font-size: 14px;
-            }
-
-            .cards-section {
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
-
-            .card {
-                min-height: 500px;
-            }
-
-            .card-content {
-                right: 22px;
-                bottom: 25px;
-                left: 22px;
-            }
-
-            .card h2 {
-                font-size: 42px;
-            }
-
-            .card p {
-                font-size: 14px;
-            }
-
-            .footer {
-                gap: 50px;
-
-                padding-top: 70px;
-                padding-bottom: 50px;
-            }
-
-            .footer-image {
-                justify-content: flex-start;
-            }
-
-            .footer-image img {
-                width: 90px;
-                height: 90px;
-            }
-
-            .footer-content h2 {
-                font-size: 36px;
-            }
-
-            .copyright {
-                margin-top: 40px;
-            }
-        }
-
-
-        /* =========================================================
-           PANTALLAS GRANDES
-        ========================================================= */
-
-        @media (min-width: 1400px) {
-
-            .hero-content {
-                max-width: 1400px;
-                margin: 0 auto;
-            }
-
-
-            .cards {
-                max-width: 1500px;
-                margin: 0 auto;
-            }
-
-            .footer {
-                padding-left: 8vw;
-                padding-right: 8vw;
-            }
-        }
-
- 
-   /* Botón Play */
-    .open-modal-btn {
-     position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 20px;
-    padding: 13px 18px;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--white);
-    box-shadow: 3.72265625px -7.984375px 100px 18px rgba(236, 224, 88, 0.88);
-      cursor: pointer;
-    }
-
-    /* Fondo difuminado */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    /* Contenedor del modal */
-    .modal {
-      background: rgb(0, 0, 0);
-      width: 80%;
-      max-width: 900px;
-      padding: 40px;
-      border-radius: 1px;
-      position: relative;
-    max-height: 80%; /* límite de altura */
-    overflow-y: auto; /* scroll vertical */
-
-    }
-
-    /* Botón cerrar */
-    .close-modal-btn {
-position: absolute;
-top: 5px;
-right: 10px;
-background: black;
-color: rgb(255, 254, 0);
-border: none;
-padding: 4px 7px;
-cursor: pointer;
-border-radius: 15px;
-border: 2px solid;
-    }
-
-    /* Video responsivo */
-    .modal video {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-
-    /* Texto en dos columnas */
-    .modal-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-
-.det-text {
- font-size: 12px;
-}
-
     </style>
 </head>
-
 
 <body>
 
     <main>
-
-        <!-- =====================================================
-             SECCIÓN 1 — HERO
-        ====================================================== -->
-
-        <section class="hero" id="inicio">
-
-            <img
-                class="hero-image"
-                src="images/bioeco.webp"
-                alt="Paisaje relacionado con bioeconomías"
-            >
-
-            <div class="hero-overlay"></div>
-
+        <!-- SECCIÓN 1 — HERO -->
+        <section class="hero reveal" id="inicio">
+            <img class="hero-image" src="images/bioeco.webp" alt="Bioeconomías background">
             <div class="hero-content">
-
                 <p class="eyebrow">
-                    11.06.2026<br>Mercado de Conocimiento y No Conocimiento Útil.
-                    Licencia #15.
+                    11.06.2026<br>Mercado de Conocimiento y No Conocimiento Útil.<br>Licencia #15.
                 </p>
-
-                <h1>
-                    BIOECONOMÍAS:
-                    OTRAS FORMAS DE ECONOMÍA
-                    PARA NUESTRO TIEMPO
-                </h1>
-
-                <p class="hero-text">
-                    Mapa Teatro – Laboratorio de artistas
-                </p>
-
-                <a href="bioeconomias.html" class="button">
-                    Ir
-                </a>
-
+                <h1>BIOECONOMÍAS: OTRAS FORMAS DE ECONOMÍA PARA NUESTRO TIEMPO</h1>
+                <p class="hero-text">Mapa Teatro – Laboratorio de artistas</p>
+                <a href="bioeconomias.html" class="button">Ir</a>
             </div>
 
+            <!-- Indicador sutil de scroll -->
+            <a href="#seccion-dos" class="scroll-indicator" aria-label="Desplazarse hacia abajo">
+                <div class="scroll-line"></div>
+            </a>
         </section>
 
-
-        <!-- =====================================================
-             SECCIÓN 2 — IMAGEN + TEXTO
-        ====================================================== -->
-
-        <section class="section-intro" id="seccion-dos">
-
-            <img
-                class="section-intro-image"
-                src="images/mercadodc.webp"
-                alt="Mercado de Conocimiento y No Conocimiento"
-            >
-
+        <!-- SECCIÓN 2 — INTRO -->
+        <section class="section-intro reveal" id="seccion-dos">
+            <img class="section-intro-image" src="images/mercadodc.webp" alt="Mercado de Conocimiento">
             <div class="section-intro-overlay"></div>
-
             <div class="section-intro-content">
-
-                <h2>
-                    ¿Qué es el Mercado de Conocimiento y No-Conocimiento?
-                </h2>
-
+                <h2>¿Qué es el Mercado de Conocimiento y No-Conocimiento?</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                    sed diam nonumy eirmod tempor invidunt ut labore et
-                    dolore magna aliquyam erat, sed diam voluptua.
+                    El Mercado de Conocimiento y No-Conocimiento Útil es un dispositivo performativo y un archivo vivo creado para propiciar la circulación horizontal de saberes heterogéneos. En este espacio se cruzan voces que desafían las jerarquías tradicionales del pensamiento académico y científico.
                     <br><br>
-                    At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren, no sea takimata sanctus est
-                    Lorem ipsum dolor sit amet.
+                    A través de encuentros estructurados bajo licencias de intercambio, se proponen diálogos donde la duda, la experiencia empírica y la intuición artística adquieren el mismo valor que la investigación formal, cuestionando cómo valoramos y comercializamos el conocimiento en nuestro tiempo.
                 </p>
- 
-  <a class="open-modal-btn">
-                    Ir
-                </a>
-
-         
-
+                <button class="button open-modal-btn">Ir</button>
             </div>
-
         </section>
 
-
-<!-- Botón Play -->
- 
-
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="close-modal-btn" id="closeModal">X</button>
-      
-      <video id="videoPlayer" controls>
-        <source src="images/hannah.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-      </video>
-      <h3>¿QUÉ ES EL MERCADO DE CONOCIMIENTO Y NO - CONOCIMIENTO?</h3>
-      <div class="modal-content">
-        <p class="det-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at tempus nulla. Morbi in viverra sem, nec interdum ante. Ut tincidunt convallis auctor. Aliquam magna est, condimentum ac mi in, aliquam faucibus turpis. Morbi leo libero, gravida vel molestie et, commodo eget urna. Aliquam fringilla purus lacus, et interdum quam condimentum nec. Mauris ac massa ultricies, ultricies enim ut, tempor lacus. Maecenas ultrices non dolor quis efficitur.
-
-Suspendisse eleifend ornare felis, rutrum maximus nisl suscipit sed. Donec cursus a purus ac pharetra. Morbi eu aliquam nunc, facilisis dapibus neque. Nullam risus libero, euismod sit amet massa quis, facilisis pharetra quam. Duis vel dolor tincidunt, imperdiet neque nec, pharetra erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam pulvinar purus nec turpis commodo tincidunt sed non arcu. Aliquam sed elit felis. Integer hendrerit lacus eget leo euismod luctus id sit amet arcu. Nunc pharetra erat tortor, nec faucibus eros tincidunt sit amet. Nulla in sem eget leo lacinia dignissim.
-
-Integer nec odio non nisi semper interdum in a neque. Etiam a mauris euismod, vehicula elit auctor, laoreet sapien. Vivamus placerat semper ex, blandit gravida nulla commodo eu. Duis gravida tempor velit eu luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam mattis eros orci, id semper nisl lacinia nec. Vestibulum non tellus cursus, consectetur nibh a, aliquam metus. Vivamus tincidunt massa magna, eu bibendum nisi lacinia a. Mauris aliquet fermentum turpis ac vehicula. Quisque imperdiet tellus et nibh viverra lobortis. Morbi porta lacus ut fringilla commodo. Aliquam sodales quam quis gravida luctus. Nulla aliquet, erat eu rhoncus dapibus, diam mi sagittis nisi, vitae egestas turpis ipsum non nisl. Cras vitae molestie orci, eu tempor turpis. Fusce mollis erat quam, a iaculis risus sagittis at. Quisque auctor dui sed lacus lobortis finibus.</p>
-        <p class="det-text">Donec eleifend quam ac ipsum ornare fringilla. Proin nec dictum felis. Morbi pellentesque, mi ac euismod mattis, enim odio laoreet neque, porttitor imperdiet nunc leo quis metus. Suspendisse potenti. Donec non tincidunt ligula. Nunc accumsan mi enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-Sed justo quam, iaculis ut sollicitudin quis, dapibus nec enim. In tincidunt auctor mi, vel accumsan orci fermentum vel. Vestibulum luctus, mauris in posuere vehicula, leo ipsum blandit dolor, in auctor erat orci non tellus. Nulla eget massa eget ligula finibus vehicula id vel leo. Aenean lectus ante, commodo at risus quis, mattis pellentesque erat. Aliquam erat volutpat. Mauris pulvinar consectetur metus id malesuada. Mauris elementum eu lectus sit amet porttitor. Integer eu imperdiet arcu. Pellentesque facilisis lobortis mauris, vel eleifend dui cursus vitae. Phasellus consequat elit eget sapien ornare varius. Mauris pharetra, justo et fringilla placerat, velit tellus gravida odio, nec ultrices ipsum enim nec purus.</p>
-      </div>
-    </div>
-  </div>
-        
-
-        <!-- =====================================================
-             SECCIÓN 3 — PROYECTOS
-        ====================================================== -->
-
-        <section class="cards-section" id="seccion-tres">
-
-            <div class="cards">
-
-                <!-- BIOECONOMÍAS -->
-
-                <article
-                    class="card"
-                    style="background-image: url('images/bio1.webp');"
-                >
-
-                    <div class="card-overlay"></div>
-
-                    <div class="card-content">
-
-                        <span class="card-number">
-                            11.06.2026
-                        </span>
-
-                        <h2>
-                            Bioeconomías
-                        </h2>
-
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetuer adipiscing elit.
-                            Aenean commodo ligula eget dolor.
+        <!-- MODAL CON BOTÓN EXTERNO -->
+        <div class="modal-overlay" id="modalOverlay">
+            <button class="button close-modal-btn" id="closeModal">Cerrar</button>
+            <div class="modal">
+                <div class="modal-body-scroll">
+                    <video id="videoPlayer" controls>
+                        <source src="images/hannah.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <h3>¿QUÉ ES EL MERCADO DE CONOCIMIENTO Y NO - CONOCIMIENTO?</h3>
+                    <div class="modal-content">
+                        <p class="det-text">
+                            El Mercado de Conocimiento y No-Conocimiento Útil es una instalación performativa interactiva concebida por Hannah Hurtzig y desarrollada junto con la Mobile Academy Berlin. Funciona como un espacio de comercio simbólico donde el público consulta a expertos individuales sobre diversos temas en un marco temporalmente delimitado. En lugar de ofrecer conferencias magistrales, el formato privilegia el diálogo uno a uno, transformando el aprendizaje en una experiencia íntima, directa e impredecible.<br><br>
+                            El concepto explora las fronteras sutiles entre lo que sabemos, lo que creemos saber y aquello que deliberadamente ignoramos. En una era dominada por el acceso instantáneo a datos e información fragmentada, este mercado busca ralentizar el proceso de intercambio para examinar el conocimiento no solo como un recurso cuantitativo, sino como un fenómeno social, performativo y afectivo.<br><br>
+                            Las dinámicas del mercado emulan las estructuras de las bolsas de comercio tradicionales, utilizando barras de sonido, temporizadores y sistemas de transmisión en vivo. Sin embargo, en lugar de acciones de empresas o divisas monetarias, lo que se transacciona son relatos, teorías, memorias personales, vacíos conceptuales y formas de conocimiento marginales o no institucionalizadas.
                         </p>
-
-                        <a href="#" class="card-button">
-                        Ir
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ACONTRACORRIENTE -->
-
-                <article
-                    class="card"
-                    style="background-image: url('images/acontra.webp');"
-                >
-
-                    <div class="card-overlay"></div>
-
-                    <div class="card-content">
-
-                        <span class="card-number">
-                            02.12.2021
-                        </span>
-
-                        <h2>
-                            Acontracorriente
-                        </h2>
-
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetuer adipiscing elit.
-                            Aenean commodo ligula eget dolor.
+                        <p class="det-text">
+                            El término "No-Conocimiento" resulta fundamental para esta práctica. No se refiere a la ignorancia pasiva o a la falta de educación, sino a una postura crítica activa: el reconocimiento consciente de los límites de la razón instrumental y la disposición a habitar la incertidumbre. En el Mercado, el no-saber es valorado como una fuerza generativa que abre espacio a la curiosidad, el asombro y el pensamiento especulativo.<br><br>
+                            Cada versión del Mercado reúne a decenas de expertos —que van desde científicos, filósofos y activistas hasta sanadores, contrabandistas y artistas— para responder a una temática central. Los visitantes adquieren un "ticket de consulta" que les otorga el derecho a dialogar durante un tiempo fijo con el experto de su elección, mientras el resto del público puede sintonizar las conversaciones a través de radiofrecuencias locales.<br><br>
+                            Al situar este dispositivo dentro del contexto de las "Bioeconomías", Mapa Teatro y sus colaboradores invitan a reflexionar sobre la relación entre la vida, los bienes comunes y la producción cultural. La propuesta cuestiona las economías extractivas del saber proponiendo, en su lugar, un ecosistema de intercambio basado en la escucha mutua, el respeto por las narrativas locales y la constante revisión de nuestras certezas.
                         </p>
-
-                        <a href="https://acontracorriente.co" class="card-button">
-                        Ir
-                        </a>
-
                     </div>
-
-                </article>
-
-
-                <!-- MATERIA -->
-
-                <article
-                    class="card"
-                    style="background-image: url('images/faenza.webp');"
-                >
-
-                    <div class="card-overlay"></div>
-
-                    <div class="card-content">
-
-                            <span class="card-number">
-                            23.11.2019
-                        </span>
-
-                        <h2>
-                            Culturas anfibias
-                        </h2>
-  
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetuer adipiscing elit.
-                            Aenean commodo ligula eget dolor.
-                        </p>
-                  
-
-                        <a href="#" class="card-button">
-                            Ir
-                        </a>
-
-                    </div>
-
-                </article>
-
+                </div>
             </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-image">
-
-            <img
-                src="images/logom.png"
-                alt="Mapa Teatro"
-            >
-
         </div>
 
+        <!-- SECCIÓN 3 — PROYECTOS -->
+        <section class="cards-section reveal" id="seccion-tres">
+            <div class="cards">
+                <article class="card" style="background-image: url('images/bio1.webp');">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="card-number">11.06.2026</span>
+                        <h2>Bioeconomías</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <a href="#" class="button">Ir</a>
+                    </div>
+                </article>
 
+                <article class="card" style="background-image: url('images/acontra.webp');">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="card-number">02.12.2021</span>
+                        <h2>Acontracorriente</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <a href="https://acontracorriente.co" class="button">Ir</a>
+                    </div>
+                </article>
+
+                <article class="card" style="background-image: url('images/faenza.webp');">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <span class="card-number">23.11.2019</span>
+                        <h2>Culturas anfibias</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <a href="#" class="button">Ir</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer reveal">
+        <div class="footer-image">
+            <img src="images/logom.png" alt="Mapa Teatro">
+        </div>
         <div class="footer-content">
-
             <p>
                 Concepto del Mercado de Conocimiento y No-Conocimiento Útil<br>
                 <b>Hannah Hurtzig, Mobile Academy Berlin</b><br><br>
-                Mapa Teatro – Laboratorio de Artistas<br>info@mapateatro.org<br><a href="https://www.instagram.com/mapateatro/">instagram</a>  / <a href="https://www.facebook.com/mapateatrolaboratoriodeartistas/">facebook</a><br><br>
-             
+                Mapa Teatro – Laboratorio de Artistas<br>info@mapateatro.org<br>
+                <a href="https://www.instagram.com/mapateatro/">instagram</a> / 
+                <a href="https://www.facebook.com/mapateatrolaboratoriodeartistas/">facebook</a>
             </p>
-
         </div>
-
     </footer>
 
-<script>
-    const openBtn = document.querySelector('.open-modal-btn');
-    const closeBtn = document.getElementById('closeModal');
-    const overlay = document.getElementById('modalOverlay');
-    const videoPlayer = document.getElementById('videoPlayer');
+    <script>
+        // Lógica Modal
+        const openBtn = document.querySelector('.open-modal-btn');
+        const closeBtn = document.getElementById('closeModal');
+        const overlay = document.getElementById('modalOverlay');
+        const videoPlayer = document.getElementById('videoPlayer');
 
-    // Abrir modal y reproducir video
-    openBtn.addEventListener('click', () => {
-      overlay.style.display = 'flex';
-      videoPlayer.play();
-    });
+        openBtn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            videoPlayer.play();
+        });
 
-    // Cerrar modal y pausar video
-    closeBtn.addEventListener('click', () => {
-      overlay.style.display = 'none';
-      videoPlayer.pause();
-    });
+        const closeModal = () => {
+            overlay.style.display = 'none';
+            videoPlayer.pause();
+        };
 
-    // Cerrar al hacer clic fuera del modal
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.style.display = 'none';
-        videoPlayer.pause();
-      }
-    });
-  </script>
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
+        });
 
+        // Transiciones sutiles en scroll (IntersectionObserver)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
