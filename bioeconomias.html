@@ -807,28 +807,31 @@ footer {
 </footer>
 
 <script>
+
 const projects = [
-  ["Mesa 20", "Mesa 20", "Lorem ipsum dolor sit amet, consectetur.", "images/m20.webp"],
-  ["Mesa 19", "Mesa 19", "Lorem ipsum dolor sit amet, consectetur.", "images/m19.webp"],
-  ["Mesa 18", "Mesa 18", "Soberanía: sanitaria, alimentaria y tecnológica.", "images/m18.webp"],
-  ["Mesa 17", "Mesa 17", "Lorem ipsum dolor sit amet, consectetur.", "images/m17.webp"],
-  ["Mesa 16", "Mesa 16", "Lorem ipsum dolor sit amet, consectetur.", "images/m16.webp"],
-  ["Mesa 15", "Mesa 15", "Lorem ipsum dolor sit amet, consectetur.", "images/m15.webp"],
-  ["Mesa 14", "Mesa 14", "Lorem ipsum dolor sit amet, consectetur.", "images/m14.webp"],
-  ["Mesa 13", "Mesa 13", "Lorem ipsum dolor sit amet, consectetur.", "images/m13.webp"],
-  ["Mesa 12", "Mesa 12", "Lorem ipsum dolor sit amet, consectetur.", "images/m12.webp"],
-  ["Mesa 11", "Mesa 11", "Lorem ipsum dolor sit amet, consectetur.", "images/m11.webp"],
-  ["Mesa 10", "Mesa 10", "Lorem ipsum dolor sit amet, consectetur.", "images/m10.webp"],
-  ["Mesa 09", "Mesa 09", "Lorem ipsum dolor sit amet, consectetur.", "images/m09.webp"],
-  ["Mesa 08", "Mesa 08", "Lorem ipsum dolor sit amet, consectetur.", "images/m08.webp"],
-  ["Mesa 07", "Mesa 07", "Lorem ipsum dolor sit amet, consectetur.", "images/m07.webp"],
-  ["Mesa 06", "Mesa 06", "Lorem ipsum dolor sit amet, consectetur.", "images/m06.webp"],
-  ["Mesa 05", "Mesa 05", "Lorem ipsum dolor sit amet, consectetur.", "images/m05.webp"],
-  ["Mesa 04", "Mesa 04", "Lorem ipsum dolor sit amet, consectetur.", "images/m04.webp"],
-  ["Mesa 03", "Mesa 03", "Lorem ipsum dolor sit amet, consectetur.", "images/m03.webp"],
-  ["Mesa 02", "Mesa 02", "Lorem ipsum dolor sit amet, consectetur.", "images/m02.webp"],
-  ["Mesa 01", "Mesa 01", "Lorem ipsum dolor sit amet, consectetur.", "images/m01.webp"]
+  // [Mesa, Título, Descripción, Portada, Foto Momento 1, Foto Momento 2, Foto Momento 3]
+  ["Mesa 20", "Mesa 20", "Soberanía sanitaria, alimentaria y tecnológica.", "images/m20.webp", "images/m20-p1.webp", "images/m20-p2.webp", "images/m20-p3.webp"],
+  ["Mesa 19", "Mesa 19", "Prácticas tradicionales de cuidado y partería.", "images/m19.webp", "images/m19-p1.webp", "images/m19-p2.webp", "images/m19-p3.webp"],
+  ["Mesa 18", "Mesa 18", "Soberanía: sanitaria, alimentaria y tecnológica.", "images/m18.webp", "images/m18-p1.webp", "images/m18-p2.webp", "images/m18-p3.webp"],
+  ["Mesa 17", "Mesa 17", "Economías populares y redes comunitarias.", "images/m17.webp", "images/m17-p1.webp", "images/m17-p2.webp", "images/m17-p3.webp"],
+  ["Mesa 16", "Mesa 16", "Cuidado de fuentes hídricas y semillas criollas.", "images/m16.webp", "images/m16-p1.webp", "images/m16-p2.webp", "images/m16-p3.webp"],
+  ["Mesa 15", "Mesa 15", "Tejido artesanal y preservación de fibras nativas.", "images/m15.webp", "images/m15-p1.webp", "images/m15-p2.webp", "images/m15-p3.webp"],
+  ["Mesa 14", "Mesa 14", "Medicina botánica e intercambios no monetarios.", "images/m14.webp", "images/m14-p1.webp", "images/m14-p2.webp", "images/m14-p3.webp"],
+  ["Mesa 13", "Mesa 13", "Sostenibilidad de los hogares e historias de vida.", "images/m13.webp", "images/m13-p1.webp", "images/m13-p2.webp", "images/m13-p3.webp"],
+  ["Mesa 12", "Mesa 12", "Estrategias de soberanía e interdependencia territorial.", "images/m12.webp", "images/m12-p1.webp", "images/m12-p2.webp", "images/m12-p3.webp"],
+  ["Mesa 11", "Mesa 11", "Transmisión oral de saberes y pedagogías del cuidado.", "images/m11.webp", "images/m11-p1.webp", "images/m11-p2.webp", "images/m11-p3.webp"],
+  ["Mesa 10", "Mesa 10", "Huertas urbanas y conservación del suelo.", "images/m10.webp", "images/m10-p1.webp", "images/m10-p2.webp", "images/m10-p3.webp"],
+  ["Mesa 09", "Mesa 09", "Reciprocidad y economías invisibles de las mujeres.", "images/m09.webp", "images/m09-p1.webp", "images/m09-p2.webp", "images/m09-p3.webp"],
+  ["Mesa 08", "Mesa 08", "Cuidado intergeneracional y redes de apoyo.", "images/m08.webp", "images/m08-p1.webp", "images/m08-p2.webp", "images/m08-p3.webp"],
+  ["Mesa 07", "Mesa 07", "Saberes anfibios y conservación de la biodiversidad.", "images/m07.webp", "images/m07-p1.webp", "images/m07-p2.webp", "images/m07-p3.webp"],
+  ["Mesa 06", "Mesa 06", "Cocinas tradicionales como espacios de resistencia.", "images/m06.webp", "images/m06-p1.webp", "images/m06-p2.webp", "images/m06-p3.webp"],
+  ["Mesa 05", "Mesa 05", "Oficios territoriales e innovaciones comunitarias.", "images/m05.webp", "images/m05-p1.webp", "images/m05-p2.webp", "images/m05-p3.webp"],
+  ["Mesa 04", "Mesa 04", "Preservación del bosque y medicina vegetal.", "images/m04.webp", "images/m04-p1.webp", "images/m04-p2.webp", "images/m04-p3.webp"],
+  ["Mesa 03", "Mesa 03", "Acompañamiento comunitario y construcción de paz.", "images/m03.webp", "images/m03-p1.webp", "images/m03-p2.webp", "images/m03-p3.webp"],
+  ["Mesa 02", "Mesa 02", "Organización colectiva de madres cabeza de familia.", "images/m02.webp", "images/m02-p1.webp", "images/m02-p2.webp", "images/m02-p3.webp"],
+  ["Mesa 01", "Mesa 01", "Apertura del mercado de saberes e interacciones de cuidado.", "images/m01.webp", "images/m01-p1.webp", "images/m01-p2.webp", "images/m01-p3.webp"]
 ];
+
 
 const lorem500 = `
   En este espacio de conversación se abordaron las dinámicas territoriales y la importancia del trabajo comunitario en el sostenimiento de las economías locales. Durante la primera intervención, las y los participantes compartieron experiencias situadas sobre el valor del cuidado, la recolección de semillas tradicionales y los saberes ancestrales transmitidos entre generaciones. La transmisión del conocimiento en estos contextos no se da mediante estructuras académicas formales, sino a través de la práctica cotidiana, la oralidad y el contacto directo con los recursos naturales y la soberanía alimentaria.
@@ -859,15 +862,25 @@ projects.forEach(([num, title, text, img], index) => {
 });
 
 function openModal(index) {
-  const [num, title, description, hero] = projects[index];
+  // Extraemos la información y las fotos individuales de los momentos
+  const [num, title, description, hero, imgStep1, imgStep2, imgStep3] = projects[index];
+  
+  // Arreglo con las rutas específicas de cada momento (si no existen, usa la portada como respaldo)
+  const stepImages = [
+    imgStep1 || hero,
+    imgStep2 || hero,
+    imgStep3 || hero
+  ];
+
   document.getElementById("modalNumber").textContent = num;
   document.getElementById("modalTitle").textContent = title;
   document.getElementById("modalDescription").textContent = description;
   document.getElementById("modalHeroImage").src = hero;
   
-  modalBody.innerHTML = [1, 2, 3].map((step) => `
+  modalBody.innerHTML = [1, 2, 3].map((step, i) => `
     <div class="modal-section">
-      <img src="${hero}" alt="${title} — Momento ${step}" loading="lazy">
+      <!-- Aquí asignamos la imagen correspondiente a cada momento -->
+      <img src="${stepImages[i]}" alt="${title} — Momento ${step}" loading="lazy">
       <div>
         <h4 style="font-size: 16px; margin-bottom: 6px;">Intervención Parte 0${step}</h4>
         <p style="font-size: 13px;">Descripción ampliada de la experiencia y los saberes compartidos en este momento de la conversación.</p>
