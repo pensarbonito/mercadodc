@@ -808,28 +808,190 @@ footer {
 
 <script>
 
+/* ==========================================================================
+   ESTRUCTURA DE DATOS: 20 MESAS CON MOMENTOS PERSONALIZADOS
+   ========================================================================== */
 const projects = [
-  // [Mesa, Título, Descripción, Portada, Foto Momento 1, Foto Momento 2, Foto Momento 3]
-  ["Mesa 20", "Mesa 20", "Soberanía sanitaria, alimentaria y tecnológica.", "images/m20.webp", "images/m20-p1.webp", "images/m20-p2.webp", "images/m20-p3.webp"],
-  ["Mesa 19", "Mesa 19", "Prácticas tradicionales de cuidado y partería.", "images/m19.webp", "images/m19-p1.webp", "images/m19-p2.webp", "images/m19-p3.webp"],
-  ["Mesa 18", "Mesa 18", "Soberanía: sanitaria, alimentaria y tecnológica.", "images/m18.webp", "images/m18-p1.webp", "images/m18-p2.webp", "images/m18-p3.webp"],
-  ["Mesa 17", "Mesa 17", "Economías populares y redes comunitarias.", "images/m17.webp", "images/m17-p1.webp", "images/m17-p2.webp", "images/m17-p3.webp"],
-  ["Mesa 16", "Mesa 16", "Cuidado de fuentes hídricas y semillas criollas.", "images/m16.webp", "images/m16-p1.webp", "images/m16-p2.webp", "images/m16-p3.webp"],
-  ["Mesa 15", "Mesa 15", "Tejido artesanal y preservación de fibras nativas.", "images/m15.webp", "images/m15-p1.webp", "images/m15-p2.webp", "images/m15-p3.webp"],
-  ["Mesa 14", "Mesa 14", "Medicina botánica e intercambios no monetarios.", "images/m14.webp", "images/m14-p1.webp", "images/m14-p2.webp", "images/m14-p3.webp"],
-  ["Mesa 13", "Mesa 13", "Sostenibilidad de los hogares e historias de vida.", "images/m13.webp", "images/m13-p1.webp", "images/m13-p2.webp", "images/m13-p3.webp"],
-  ["Mesa 12", "Mesa 12", "Estrategias de soberanía e interdependencia territorial.", "images/m12.webp", "images/m12-p1.webp", "images/m12-p2.webp", "images/m12-p3.webp"],
-  ["Mesa 11", "Mesa 11", "Transmisión oral de saberes y pedagogías del cuidado.", "images/m11.webp", "images/m11-p1.webp", "images/m11-p2.webp", "images/m11-p3.webp"],
-  ["Mesa 10", "Mesa 10", "Huertas urbanas y conservación del suelo.", "images/m10.webp", "images/m10-p1.webp", "images/m10-p2.webp", "images/m10-p3.webp"],
-  ["Mesa 09", "Mesa 09", "Reciprocidad y economías invisibles de las mujeres.", "images/m09.webp", "images/m09-p1.webp", "images/m09-p2.webp", "images/m09-p3.webp"],
-  ["Mesa 08", "Mesa 08", "Cuidado intergeneracional y redes de apoyo.", "images/m08.webp", "images/m08-p1.webp", "images/m08-p2.webp", "images/m08-p3.webp"],
-  ["Mesa 07", "Mesa 07", "Saberes anfibios y conservación de la biodiversidad.", "images/m07.webp", "images/m07-p1.webp", "images/m07-p2.webp", "images/m07-p3.webp"],
-  ["Mesa 06", "Mesa 06", "Cocinas tradicionales como espacios de resistencia.", "images/m06.webp", "images/m06-p1.webp", "images/m06-p2.webp", "images/m06-p3.webp"],
-  ["Mesa 05", "Mesa 05", "Oficios territoriales e innovaciones comunitarias.", "images/m05.webp", "images/m05-p1.webp", "images/m05-p2.webp", "images/m05-p3.webp"],
-  ["Mesa 04", "Mesa 04", "Preservación del bosque y medicina vegetal.", "images/m04.webp", "images/m04-p1.webp", "images/m04-p2.webp", "images/m04-p3.webp"],
-  ["Mesa 03", "Mesa 03", "Acompañamiento comunitario y construcción de paz.", "images/m03.webp", "images/m03-p1.webp", "images/m03-p2.webp", "images/m03-p3.webp"],
-  ["Mesa 02", "Mesa 02", "Organización colectiva de madres cabeza de familia.", "images/m02.webp", "images/m02-p1.webp", "images/m02-p2.webp", "images/m02-p3.webp"],
-  ["Mesa 01", "Mesa 01", "Apertura del mercado de saberes e interacciones de cuidado.", "images/m01.webp", "images/m01-p1.webp", "images/m01-p2.webp", "images/m01-p3.webp"]
+  [
+    "Mesa 20",
+    "Mesa 20: Soberanía Sanitaria y Tecnológica",
+    "Soberanía sanitaria, alimentaria y tecnológica en territorios comunitarios.",
+    "images/m20.webp",
+    ["images/m20-p1.webp", "Momento 01: Contextualización del Saber", "Introducción a los conocimientos tradicionales sobre salud y tecnología."],
+    ["images/m20-p2.webp", "Momento 02: Demostración de Prácticas", "Espacio práctico sobre la preparación de soluciones comunitarias."],
+    ["images/m20-p3.webp", "Momento 03: Intercambio de Experiencias", "Diálogo abierto entre los asistentes y los sabedores."]
+  ],
+  [
+    "Mesa 19",
+    "Mesa 19: Prácticas Tradicionales de Partería",
+    "Preservación de saberes de partería y medicina del cuidado.",
+    "images/m19.webp",
+    ["images/m19-p1.webp", "Momento 01: Saberes de la Tierra", "Presentación de plantas medicinales usadas en el cuidado materna."],
+    ["images/m19-p2.webp", "Momento 02: Ejercicio Teórico-Práctico", "Demostración de acompañamiento e interacción de saberes."],
+    ["images/m19-p3.webp", "Momento 03: Reflexiones Compartidas", "Cierre y preguntas del público sobre la práctica tradicional."]
+  ],
+  [
+    "Mesa 18",
+    "Mesa 18: Soberanía Alimentaria y Semillas",
+    "Soberanía sanitaria, alimentaria y conservación de variedades nativas.",
+    "images/m18.webp",
+    ["images/m18-p1.webp", "Momento 01: Muestra de Semillas Criollas", "Exposición sobre la diversidad de especies conservadas."],
+    ["images/m18-p2.webp", "Momento 02: Técnicas de Cultivo", "Explicación sobre la preservación de suelos y agroecología."],
+    ["images/m18-p3.webp", "Momento 03: Redes de Trueque", "Conclusiones sobre el intercambio de alimentos y conocimientos."]
+  ],
+  [
+    "Mesa 17",
+    "Mesa 17: Economías Populares y Comunitarias",
+    "Modelos de economía popular y sostenibilidad de redes comunitarias.",
+    "images/m17.webp",
+    ["images/m17-p1.webp", "Momento 01: Mapeo Colectivo", "Identificación de nodos y alianzas locales de trabajo."],
+    ["images/m17-p2.webp", "Momento 02: Estrategias de Sostenibilidad", "Presentación de modelos de gestión propia."],
+    ["images/m17-p3.webp", "Momento 03: Plenaria", "Acuerdos comunes y compromisos de articulación."]
+  ],
+  [
+    "Mesa 16",
+    "Mesa 16: Cuidado del Agua y Fuentes Hídricas",
+    "Prácticas de protección de cuencas hídricas y ecosistemas vitales.",
+    "images/m16.webp",
+    ["images/m16-p1.webp", "Momento 01: Diagnóstico Territorial", "Lectura comunitaria sobre el estado de las fuentes de agua."],
+    ["images/m16-p2.webp", "Momento 02: Propuestas de Conservación", "Presentación de iniciativas de limpieza y reforestación."],
+    ["images/m16-p3.webp", "Momento 03: Acuerdos por el Agua", "Consolidación de compromisos territoriales."]
+  ],
+  [
+    "Mesa 15",
+    "Mesa 15: Tejido Artesanal y Fibras Nativas",
+    "Preservación de técnicas de tejido ancestral y fibras del entorno.",
+    "images/m15.webp",
+    ["images/m15-p1.webp", "Momento 01: Historia de las Fibras", "Origen de las materias primas y su recolección sostenible."],
+    ["images/m15-p2.webp", "Momento 02: Taller de Muestra", "Demostración en vivo de técnicas de hilado y teñido."],
+    ["images/m15-p3.webp", "Momento 03: Muestra de Piezas", "Exposición e interpretación de los diseños elaborados."]
+  ],
+  [
+    "Mesa 14",
+    "Mesa 14: Medicina Botánica e Intercambios",
+    "Conocimiento botánico tradicional y formas de intercambio no monetario.",
+    "images/m14.webp",
+    ["images/m14-p1.webp", "Momento 01: Identificación Botánica", "Clasificación de plantas medicinales y sus usos."],
+    ["images/m14-p2.webp", "Momento 02: Procesos de Extracción", "Demostración de elaboración de remedios y pomadas."],
+    ["images/m14-p3.webp", "Momento 03: Trueque de Saberes", "Intercambio directo de conocimientos y preparados."]
+  ],
+  [
+    "Mesa 13",
+    "Mesa 13: Sostenibilidad del Hogar y Vida",
+    "Sostenibilidad de los hogares, relatos cotidianos e historias de vida.",
+    "images/m13.webp",
+    ["images/m13-p1.webp", "Momento 01: Circulo de la Palabra", "Relatos comunitarios sobre la organización del hogar."],
+    ["images/m13-p2.webp", "Momento 02: Prácticas Diarias", "Estrategias de economía doméstica y reutilización."],
+    ["images/m13-p3.webp", "Momento 03: Reflexión Final", "Evaluación colectiva del cuidado de la vida."]
+  ],
+  [
+    "Mesa 12",
+    "Mesa 12: Interdependencia Territorial",
+    "Estrategias de soberanía e interdependencia entre regiones.",
+    "images/m12.webp",
+    ["images/m12-p1.webp", "Momento 01: Contexto Regional", "Presentación de los vínculos entre diversos territorios."],
+    ["images/m12-p2.webp", "Momento 02: Mesas de Trabajo", "Análisis de problemáticas comunes y soluciones compartidas."],
+    ["images/m12-p3.webp", "Momento 03: Hoja de Ruta", "Establecimiento de metas y alianzas interregionales."]
+  ],
+  [
+    "Mesa 11",
+    "Mesa 11: Transmisión Oral de Saberes",
+    "Pedagogías comunitarias y transmisión oral entre generaciones.",
+    "images/m11.webp",
+    ["images/m11-p1.webp", "Momento 01: Oralidad y Memoria", "Narración oral a cargo de sabedores y sabedoras."],
+    ["images/m11-p2.webp", "Momento 02: Dinámica Intergeneracional", "Actividad de aprendizaje conjunto entre jóvenes y mayores."],
+    ["images/m11-p3.webp", "Momento 03: Conclusiones", "Sintesis de metodologías para la transmisión de conocimiento."]
+  ],
+  [
+    "Mesa 10",
+    "Mesa 10: Huertas Urbanas y Conservación",
+    "Agricultura urbana y técnicas de regeneración de suelos.",
+    "images/m10.webp",
+    ["images/m10-p1.webp", "Momento 01: Principios de Agroecología", "Introducción al diseño de huertas en espacios reducidos."],
+    ["images/m10-p2.webp", "Momento 02: Preparación de Sustrato", "Demostración de compostaje y nutrición de la tierra."],
+    ["images/m10-p3.webp", "Momento 03: Siembra Colectiva", "Práctica directa de siembra e intercambio de plántulas."]
+  ],
+  [
+    "Mesa 09",
+    "Mesa 09: Economías Invisibles del Cuidado",
+    "Reciprocidad y visibilización del trabajo de cuidado de las mujeres.",
+    "images/m09.webp",
+    ["images/m09-p1.webp", "Momento 01: Exposición de Indicadores", "Presentación sobre el valor económico del cuidado."],
+    ["images/m09-p2.webp", "Momento 02: Relatos de Vida", "Testimonios sobre el trabajo invisibilizado en las comunidades."],
+    ["images/m09-p3.webp", "Momento 03: Propuestas de Política", "Recomendaciones para el reconocimiento de estas economías."]
+  ],
+  [
+    "Mesa 08",
+    "Mesa 08: Redes de Apoyo Intergeneracional",
+    "Sistemas comunitarios para el cuidado de la niñez y personas mayores.",
+    "images/m08.webp",
+    ["images/m08-p1.webp", "Momento 01: Diagnóstico de Necesidades", "Identificación de poblaciones prioritarias de atención."],
+    ["images/m08-p2.webp", "Momento 02: Modelos de Red", "Muestra de experiencias exitosas de cuidado compartido."],
+    ["images/m08-p3.webp", "Momento 03: Compromisos Locales", "Planes de acción para fortalecer redes comunitarias."]
+  ],
+  [
+    "Mesa 07",
+    "Mesa 07: Saberes Anfibios y Biodiversidad",
+    "Conocimientos tradicionales asociados a zonas húmedas y de río.",
+    "images/m07.webp",
+    ["images/m07-p1.webp", "Momento 01: Lectura del Ecosistema", "Explicación de los ciclos del agua y la biodiversidad local."],
+    ["images/m07-p2.webp", "Momento 02: Herramientas de Pesca Tradicional", "Exposición de métodos sustentables de recolección."],
+    ["images/m07-p3.webp", "Momento 03: Protección del Territorio", "Diálogo sobre la preservación de humedales y ríos."]
+  ],
+  [
+    "Mesa 06",
+    "Mesa 06: Cocinas Tradicionales de Resistencia",
+    "Patrimonio gastronómico y la cocina como espacio de memoria.",
+    "images/m06.webp",
+    ["images/m06-p1.webp", "Momento 01: Ingredientes Antiguos", "Identificación de productos autóctonos y sus propiedades."],
+    ["images/m06-p2.webp", "Momento 02: Preparación Tradicional", "Demostración de cocina comunitaria y saberes culinarios."],
+    ["images/m06-p3.webp", "Momento 03: Degustación y Diálogo", "Reflexión alrededor del alimento y la comensalidad."]
+  ],
+  [
+    "Mesa 05",
+    "Mesa 05: Oficios Territoriales e Innovación",
+    "Rescate de oficios tradicionales e innovación social comunitaria.",
+    "images/m05.webp",
+    ["images/m05-p1.webp", "Momento 01: Muestra de Oficios", "Demostración de herrería, carpintería u oficios locales."],
+    ["images/m05-p2.webp", "Momento 02: Adaptación Tecnológica", "Integración de nuevas herramientas en labores tradicionales."],
+    ["images/m05-p3.webp", "Momento 03: Transmisión del Oficio", "Estrategias para incentivar el aprendizaje en los jóvenes."]
+  ],
+  [
+    "Mesa 04",
+    "Mesa 04: Preservación del Bosque",
+    "Conservación del bosque nativo y aplicaciones medicinales.",
+    "images/m04.webp",
+    ["images/m04-p1.webp", "Momento 01: Recorrido de Reconocimiento", "Explicación de especies arbóreas y su rol en el ecosistema."],
+    ["images/m04-p2.webp", "Momento 02: Usos Sostenibles", "Prácticas de recolección de baja huella ambiental."],
+    ["images/m04-p3.webp", "Momento 03: Pactos de Conservación", "Acuerdos comunitarios para evitar la deforestación."]
+  ],
+  [
+    "Mesa 03",
+    "Mesa 03: Construcción de Paz Comunitario",
+    "Acompañamiento en el territorio y construcción de tejido social.",
+    "images/m03.webp",
+    ["images/m03-p1.webp", "Momento 01: Cartografía del Conflicto", "Identificación de retos de convivencia en la comunidad."],
+    ["images/m03-p2.webp", "Momento 02: Herramientas de Dialogo", "Taller de mediación y resolución alternativa de disputas."],
+    ["images/m03-p3.webp", "Momento 03: Declaración Colectiva", "Lectura de compromisos de paz e integración local."]
+  ],
+  [
+    "Mesa 02",
+    "Mesa 02: Organización Colectiva de Mujeres",
+    "Redes de apoyo entre madres cabeza de familia y liderazgo femenino.",
+    "images/m02.webp",
+    ["images/m02-p1.webp", "Momento 01: Historia Organizativa", "Trayectoria de los colectivos de mujeres en la región."],
+    ["images/m02-p2.webp", "Momento 02: Proyectos Productivos", "Exposición de iniciativas autogestionadas."],
+    ["images/m02-p3.webp", "Momento 03: Agenda de Liderazgo", "Ruta de trabajo conjunto para el fortalecimiento del gremio."]
+  ],
+  [
+    "Mesa 01",
+    "Mesa 01: Mercado de Saberes e Interacciones",
+    "Apertura del espacio, intercambio de conocimientos y red de cuidado.",
+    "images/m01.webp",
+    ["images/m01-p1.webp", "Momento 01: Marco Conceptual", "Introducción al Mercado de Conocimiento y las Bioeconomías."],
+    ["images/m01-p2.webp", "Momento 02: Dinámica de Encuentro", "Espacio de interacción directa entre todos los participantes."],
+    ["images/m01-p3.webp", "Momento 03: Conclusiones del Encuentro", "Balance general de los saberes reunidos en la jornada."]
+  ]
 ];
 
 
@@ -861,15 +1023,20 @@ projects.forEach(([num, title, text, img], index) => {
   grid.appendChild(card);
 });
 
+/* ==========================================================================
+   FUNCIÓN OPENMODAL
+   ========================================================================== */
 function openModal(index) {
-  // Extraemos la información y las fotos individuales de los momentos
-  const [num, title, description, hero, imgStep1, imgStep2, imgStep3] = projects[index];
+  const project = projects[index];
+  if (!project) return;
+
+  const [num, title, description, hero, step1, step2, step3] = project;
   
-  // Arreglo con las rutas específicas de cada momento (si no existen, usa la portada como respaldo)
-  const stepImages = [
-    imgStep1 || hero,
-    imgStep2 || hero,
-    imgStep3 || hero
+  // Lista de momentos con respaldo preventivo
+  const stepsData = [
+    step1 || [hero, "Intervención Parte 01", "Descripción del momento 1."],
+    step2 || [hero, "Intervención Parte 02", "Descripción del momento 2."],
+    step3 || [hero, "Intervención Parte 03", "Descripción del momento 3."]
   ];
 
   document.getElementById("modalNumber").textContent = num;
@@ -877,27 +1044,31 @@ function openModal(index) {
   document.getElementById("modalDescription").textContent = description;
   document.getElementById("modalHeroImage").src = hero;
   
-  modalBody.innerHTML = [1, 2, 3].map((step, i) => `
-    <div class="modal-section">
-      <!-- Aquí asignamos la imagen correspondiente a cada momento -->
-      <img src="${stepImages[i]}" alt="${title} — Momento ${step}" loading="lazy">
-      <div>
-        <h4 style="font-size: 16px; margin-bottom: 6px;">Intervención Parte 0${step}</h4>
-        <p style="font-size: 13px;">Descripción ampliada de la experiencia y los saberes compartidos en este momento de la conversación.</p>
-        
-        <audio controls preload="none">
-          <source src="audio/proyecto-${index+1}-0${step}.mp3" type="audio/mpeg">
-        </audio>
+  modalBody.innerHTML = stepsData.map((stepData, i) => {
+    const [img, stepTitle, stepDesc] = stepData;
+    const stepNum = i + 1;
 
-        <details class="transcription-accordion">
-          <summary>Ver transcripción completa de la grabación</summary>
-          <div class="transcription-content">
-            <p>${lorem500.replace(/\n\n/g, '</p><p style="margin-top:12px;">')}</p>
-          </div>
-        </details>
+    return `
+      <div class="modal-section">
+        <img src="${img}" alt="${title} — ${stepTitle}" loading="lazy">
+        <div>
+          <h4 style="font-size: 16px; margin-bottom: 6px;">${stepTitle}</h4>
+          <p style="font-size: 13px;">${stepDesc}</p>
+          
+          <audio controls preload="none">
+            <source src="audio/proyecto-${index + 1}-0${stepNum}.mp3" type="audio/mpeg">
+          </audio>
+
+          <details class="transcription-accordion">
+            <summary>Ver transcripción completa de la grabación</summary>
+            <div class="transcription-content">
+              <p>${lorem500.replace(/\n\n/g, '</p><p style="margin-top:12px;">')}</p>
+            </div>
+          </details>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
   
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
