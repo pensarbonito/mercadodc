@@ -303,7 +303,6 @@ p {
   inset: 0;
   z-index: 100;
   display: none;
-  background: rgba(0, 0, 0, 0.88);
   backdrop-filter: blur(12px);
   overflow-y: auto;
 }
@@ -321,30 +320,35 @@ p {
 
 .modal-close {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 999;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #141414;
-  border: 1px solid var(--accent-pink);
-  color: var(--white);
-  font-size: 18px;
+  top: 25px;
+  right: 30px;
+  z-index: 1010;
   display: none;
   align-items: center;
   justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  width: fit-content;
+  height: auto;
+  line-height: 1;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 174, 0, 0.65);
+  color: coral;
+  background-color: beige;
+  gap: 25px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  font-size: 15px;
+  font-weight: 200;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.9);
-  transition: background 0.2s, transform 0.2s;
+  box-shadow: 3.72265625px -7.984375px 94px 46px rgba(246, 196, 48, 0.81);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .modal.is-open + .modal-close { display: flex; }
 
 .modal-close:hover {
-  background: var(--accent-pink);
-  color: var(--white);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 480px) {
@@ -353,11 +357,8 @@ p {
     margin: 16px auto;
   }
   .modal-close {
-    top: 12px;
-    right: 12px;
-    width: 38px;
-    height: 38px;
-    font-size: 16px;
+    top: 15px;
+    right: 15px;
   }
 }
 
@@ -466,61 +467,57 @@ details summary:hover { color: var(--accent-pink); }
   object-fit: cover;
 }
 
-/* 4 — ANFITRIONES / CARRUSEL */
+/* 4 — ANFITRIONES / ARCHIVO VISUAL */
 #carrusel {
   padding: clamp(50px, 6vw, 80px) 0;
   border-top: 1px solid var(--line);
 }
 
-.carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding-bottom: 10px;
+.hosts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 64px);
 }
 
-.carousel::-webkit-scrollbar { display: none; }
-
-.slide {
-  flex: 0 0 min(80vw, 540px);
-  scroll-snap-align: start;
+.host-column {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
 }
 
-.slide img {
+.host-column .eyebrow {
+  margin-bottom: 8px;
+}
+
+.host-column h3 {
+  font-size: clamp(22px, 2.5vw, 34px);
+  margin-bottom: 20px;
+}
+
+.host-column > p {
+  margin-bottom: 24px;
+  max-width: 52ch;
+}
+
+.host-column figure img {
   aspect-ratio: 16/10;
   object-fit: cover;
   border-radius: 4px;
   filter: brightness(0.85);
 }
 
-.slide figcaption {
+.host-column figcaption {
   padding-top: 12px;
   color: var(--grey);
   font-size: 13px;
+  line-height: 1.65;
 }
 
-.carousel-controls {
-  display: flex;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.btn--icon {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn--icon:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
+@media (max-width: 700px) {
+  .hosts-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }
 
 /* 5 — FOOTER */
@@ -605,9 +602,9 @@ footer {
     <a href="#inicio" class="nav-logo">BIOECONOMÍAS</a>
     <ul class="nav-links">
       <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#galeria">Sabedoras/es</a></li>
+      <li><a href="#galeria">MESAS</a></li>
       <li><a href="#video">Video</a></li>
-      <li><a href="#carrusel">Anfitriones</a></li>
+      <li><a href="#carrusel">Galeria</a></li>
       <li><a href="#creditos">Créditos</a></li>
       <li><a href="https://pensarbonito.github.io/mercadodc">Volver al inicio</a></li>
     </ul>
@@ -627,9 +624,7 @@ footer {
           <p class="intro-meta">EL 11 DE JUNIO DE 2026, EL AUDITORIO FABIO LOZANO ALBERGÓ 120 CONVERSACIONES ÍNTIMAS CON 60 SABEDORAS/ES, CADA QUIEN CON UN TEMA ÚNICO. LA DINÁMICA SE ORGANIZÓ EN TRES RONDAS POR MESA DE UNA HORA CADA UNA, DIVIDIDAS EN DOS TURNOS DE 30 MINUTOS.</p>
           
           <div class="intro-buttons-group">
-            <a class="btn-download" href="documentos/bioeconomias.pdf" download>Descargar documento principal</a>
-            <a class="btn-download" href="documentos/memoria-sabedores.pdf" download>Descargar memorias del encuentro</a>
-            <a class="btn-download" href="documentos/programa.pdf" download>Descargar programación completa</a>
+            <a class="btn-download" href="documentos/programa.pdf" download>Descargar programa de mano</a>
           </div>
         </div>
 
@@ -656,11 +651,9 @@ footer {
       <div class="section-head">
         <div>
           <span class="eyebrow">Encuentros e intercambios</span>
-          <h2>SABEDORAS Y SABEDORES</h2>
+          <h2>MESAS</h2>
         </div>
         <div>
-          <p>La curaduría de esta edición fue un ejercicio de escucha y rastreo a lo largo de diversos territorios de Colombia. El proceso se centró en identificar a 60 sabedoras, sabedores, expertas y expertos cuyos oficios encarnan las bioeconomías en la práctica cotidiana.</p>
-          <p style="margin-top: 8px; font-size: 12px; color: var(--grey);">CONVERSACIONES | AUDITORIO FABIO LOZANO, BOGOTÁ</p>
         </div>
       </div>
       <div class="grid-cards" id="projectGrid"></div>
@@ -672,9 +665,8 @@ footer {
       <div class="section-head">
         <div>
           <span class="eyebrow">Registro Audiovisual</span>
-          <h2>MEMORIA VIVA</h2>
+          <h2>VIDEO</h2>
         </div>
-        <p>Reviva los momentos destacados del encuentro y los testimonios de las y los participantes en el Auditorio Fabio Lozano.</p>
       </div>
       <div class="video-frame">
         <video controls poster="images/bioeco.webp">
@@ -687,30 +679,26 @@ footer {
 
   <section id="carrusel">
     <div class="inner">
-      <div class="section-head">
-        <div>
+      <div class="hosts-grid">
+        <article class="host-column">
           <span class="eyebrow">Archivo visual</span>
-          <h2>ANFITRIONES</h2>
-        </div>
-        <p>Espacios, atmósferas y momentos compartidos durante el desarrollo de las sesiones y mesas de diálogo territorial.</p>
-      </div>
+          <h3>ANFITRIONES</h3>
+          <p>Espacios, atmósferas y momentos compartidos durante el desarrollo de las sesiones y mesas de diálogo territorial.</p>
+          <figure>
+            <img src="images/bioeco.webp" alt="Bioeconomías" loading="lazy">
+            <figcaption>Este archivo reúne las huellas de un encuentro construido desde la escucha. Cada imagen conserva una relación entre los cuerpos, los territorios y las preguntas que dieron forma a las conversaciones. Los anfitriones abrieron sus espacios para compartir experiencias, conocimientos y formas de cuidado que pocas veces aparecen en los relatos oficiales. La fotografía registra una pausa, un gesto o una mesa común, pero también muestra la confianza necesaria para pensar colectivamente. Mirar estas escenas permite reconocer la diversidad de voces del proyecto y recordar que la bioeconomía nace de prácticas vivas, colaborativas y profundamente vinculadas con la comunidad.</figcaption>
+          </figure>
+        </article>
 
-      <div class="carousel" id="carousel">
-        <figure class="slide"><img src="images/bioeco.webp" alt="Bioeconomías" loading="lazy"><figcaption>Imagen 01 — Bioeconomías</figcaption></figure>
-        <figure class="slide"><img src="images/mercadodc.webp" alt="Mercado de conocimiento" loading="lazy"><figcaption>Imagen 02 — Mercado de conocimiento</figcaption></figure>
-        <figure class="slide"><img src="images/bio1.webp" alt="Proyecto Bioeconomías" loading="lazy"><figcaption>Imagen 03 — Proyecto</figcaption></figure>
-        <figure class="slide"><img src="images/acontra.webp" alt="Acontracorriente" loading="lazy"><figcaption>Imagen 04 — Acontracorriente</figcaption></figure>
-        <figure class="slide"><img src="images/faenza.webp" alt="Culturas anfibias" loading="lazy"><figcaption>Imagen 05 — Culturas anfibias</figcaption></figure>
-        <figure class="slide"><img src="images/m01.webp" alt="Mesas de intercambio" loading="lazy"><figcaption>Imagen 06 — Diálogos territoriales</figcaption></figure>
-        <figure class="slide"><img src="images/m02.webp" alt="Soberanía alimentaria" loading="lazy"><figcaption>Imagen 07 — Prácticas de cuidado</figcaption></figure>
-        <figure class="slide"><img src="images/m03.webp" alt="Intercambios en vivo" loading="lazy"><figcaption>Imagen 08 — Ronda de conversaciones</figcaption></figure>
-        <figure class="slide"><img src="images/m04.webp" alt="Espacio de escucha" loading="lazy"><figcaption>Imagen 09 — Intercambio de saberes</figcaption></figure>
-        <figure class="slide"><img src="images/m05.webp" alt="Cierre de jornada" loading="lazy"><figcaption>Imagen 10 — Memoria colectiva</figcaption></figure>
-      </div>
-
-      <div class="carousel-controls">
-        <button class="btn btn--icon" id="prev" aria-label="Anterior">←</button>
-        <button class="btn btn--icon" id="next" aria-label="Siguiente">→</button>
+        <article class="host-column">
+          <span class="eyebrow">Archivo visual</span>
+          <h3>SABEDORXS</h3>
+          <p>Espacios, atmósferas y momentos compartidos durante el desarrollo de las sesiones y mesas de diálogo territorial.</p>
+          <figure>
+            <img src="images/mercadodc.webp" alt="Mercado de conocimiento" loading="lazy">
+            <figcaption>Las fotografías muestran un mercado entendido como lugar de intercambio y no como escenario de respuestas definitivas. En cada reunión, los saberes circularon entre generaciones, oficios y geografías distintas. Los anfitriones acompañaron ese movimiento con relatos sobre la alimentación, la memoria, el trabajo y el cuidado de la vida. La cámara se detiene en los detalles del encuentro: una conversación atenta, una mano que señala, un grupo que espera y una idea que encuentra eco. Este registro visual conserva la energía de esas jornadas y propone volver a ellas para descubrir nuevas conexiones entre las experiencias compartidas.</figcaption>
+          </figure>
+        </article>
       </div>
     </div>
   </section>
@@ -741,7 +729,7 @@ footer {
       <img src="images/logo-goethe.png" alt="Goethe-Institut" loading="lazy">
     </div>
 
-    <p style="max-width: 90ch; font-size: 13px; line-height: 1.6;">
+    <p style="font-size: 13px; line-height: 1.6;">
       El Mercado de Conocimiento y No-Conocimiento Útil, Licencia # 15 es un proyecto artístico de la Mobile Academy Berlin para el Ministerio de Igualdad y Equidad, Viceministerio de las Mujeres, Dirección para las Madres Cabeza de Familia, adaptado y realizado por Mapa Teatro-Laboratorio de Artistas con el apoyo de la Fundación Panamericana para el Desarrollo, la Universidad Jorge Tadeo Lozano y el Goethe-Institut.
     </p>
 
@@ -824,11 +812,11 @@ const projects = [
   [
     "Mesa 19",
     "Coral, guáimaro, corozo, copoazú y arazá",
-    "Cras et auctor ligula. Nunc efficitur sem.",
+    "San Andrés Isla, Bogotá D.C.",
     "images/m19.webp",
-    ["images/m19-p1.webp", "La capacidad de carga de una isla", "Catherine Archbold Gari, San Andrés Isla. Politóloga raizal y vocera de Ason Tour. San Andrés Isla y sus cayos viven un colapso silencioso: en su frágil ecosistema, el turismo desbordado compite con el pueblo raizal por el agua dulce y genera un descomunal problema de basura. Catherine hablará de las especificidades de los cayos de este archipiélago y de los conflictos para la vida marina que genera la invasión de plásticos provenientes del turismo y de otros lugares del mundo. Esta problemática suscita preguntas urgentes: ¿cuál es la capacidad del ecosistema de soportar las actividades que son externas a él?; ¿están preparados los habitantes de esta isla del Caribe para asumir los desafíos que los huracanes cíclicos suponen?"],
-    ["images/m19-p2.webp", "Bioeconomía para el bosque seco tropical en vía de extinción: los casos del guáimaro y el corozo", "Nathalia María Vanessa Flórez Zapata. Bogotá D.C. Instituto de Investigación de Recursos Biológicos Alexander von Humboldt. El Instituto Humboldt entiende la bioeconomía desde el marco de las contribuciones de la naturaleza a las personas. En sus investigaciones llegó al bosque seco tropical, que pasa de la austeridad a la abundancia a lo largo del año. El árbol del guáimaro y la palma de corozo, especies nativas de estos bosques, son altamente productivas y nutritivas y, además, tienen muchos valores culturales, bioculturales. En esta conversación Nathalia compartirá las poéticas formas de vida que construyen estas especies con pescadores y campesinos y las contribuciones materiales e inmateriales que generan en sus entornos."],
-    ["images/m19-p3.webp", "Del bosque al laboratorio y del laboratorio al bosque", "Juliana Erika Cristina Cardona Jaramillo, Bogotá D.C. Ingeniera química, doctora en Desarrollo de Bioproductos e Investigadora Principal del Instituto SINCHI. Juliana ha dedicado 18 años a entender que el uso sostenible de la biodiversidad es la herramienta más potente contra la deforestación en la Amazonía. Por ello conecta la ingeniería química con la realidad de la Amazonía para demostrar que una molécula puede ser el motor de un modelo económico. En esta conversación mostrará cómo el análisis científico de frutos como el copoazú o el arazá permite diseñar procesos que generan riqueza sin tumbar un solo árbol. El laboratorio valida el conocimiento ancestral para establecer límites de aprovechamiento que impiden la industrialización destructiva. Mantener el bosque en pie es, científicamente, la alternativa más rentable y vital para la humanidad."]
+    ["images/m19-p1.webp", "La capacidad de carga de una isla", "<b>Catherine Archbold Gari</b>, San Andrés Isla.<br><i>Politóloga raizal y vocera de Ason Tour.</i><br>San Andrés Isla y sus cayos viven un colapso silencioso: en su frágil ecosistema, el turismo desbordado compite con el pueblo raizal por el agua dulce y genera un descomunal problema de basura. Catherine hablará de las especificidades de los cayos de este archipiélago y de los conflictos para la vida marina que genera la invasión de plásticos provenientes del turismo y de otros lugares del mundo. Esta problemática suscita preguntas urgentes: ¿cuál es la capacidad del ecosistema de soportar las actividades que son externas a él?; ¿están preparados los habitantes de esta isla del Caribe para asumir los desafíos que los huracanes cíclicos suponen?"],
+    ["images/m19-p2.webp", "Bioeconomía para el bosque seco tropical en vía de extinción: los casos del guáimaro y el corozo", "<b>Nathalia María Vanessa Flórez Zapata</b>, Bogotá D.C.<br><i>Instituto de Investigación de Recursos Biológicos Alexander von Humboldt.</i><br>El Instituto Humboldt entiende la bioeconomía desde el marco de las contribuciones de la naturaleza a las personas. En sus investigaciones llegó al bosque seco tropical, que pasa de la austeridad a la abundancia a lo largo del año. El árbol del guáimaro y la palma de corozo, especies nativas de estos bosques, son altamente productivas y nutritivas y, además, tienen muchos valores culturales, bioculturales. En esta conversación Nathalia compartirá las poéticas formas de vida que construyen estas especies con pescadores y campesinos y las contribuciones materiales e inmateriales que generan en sus entornos."],
+    ["images/m19-p3.webp", "Del bosque al laboratorio y del laboratorio al bosque", "<b>Juliana Erika Cristina Cardona Jaramillo</b>, Bogotá D.C.<br><i>Ingeniera química, doctora en Desarrollo de Bioproductos e Investigadora Principal del Instituto SINCHI.</i><br>Juliana ha dedicado 18 años a entender que el uso sostenible de la biodiversidad es la herramienta más potente contra la deforestación en la Amazonía. Por ello conecta la ingeniería química con la realidad de la Amazonía para demostrar que una molécula puede ser el motor de un modelo económico. En esta conversación mostrará cómo el análisis científico de frutos como el copoazú o el arazá permite diseñar procesos que generan riqueza sin tumbar un solo árbol. El laboratorio valida el conocimiento ancestral para establecer límites de aprovechamiento que impiden la industrialización destructiva. Mantener el bosque en pie es, científicamente, la alternativa más rentable y vital para la humanidad."]
   ],
   [
     "Mesa 18",
@@ -1085,10 +1073,6 @@ closeModalBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
-/* CARRUSEL DE ANFITRIONES */
-const carousel = document.getElementById("carousel");
-document.getElementById("next").onclick = () => carousel.scrollBy({left: carousel.clientWidth * 0.75, behavior: "smooth"});
-document.getElementById("prev").onclick = () => carousel.scrollBy({left: -carousel.clientWidth * 0.75, behavior: "smooth"});
 </script>
 </body>
 </html>
